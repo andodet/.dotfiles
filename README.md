@@ -1,6 +1,6 @@
 # Post install scripts and configs
 
-This repo contains config files and a script to restore a clean Fedora install.
+This repo contains config files and a script to restore a clean Fedora/Ubuntu install.
 
 ## Usage
 
@@ -13,7 +13,7 @@ sh ./sync_settings.sh
 Restore all config files with the following command
 
 ```sh
-sh ./run.sh
+sh ./run-ubuntu.sh
 ```
 
 The command above will:
