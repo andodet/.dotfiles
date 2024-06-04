@@ -1,0 +1,8 @@
+configuration {
+    modi: "window,drun,combi";
+    combi-modi: "window,drun,ssh";
+    show-icons: true;
+    terminal: "kitty";
+}
+@theme "/usr/share/rofi/themes/gruvbox-dark-hard.rasi"
+

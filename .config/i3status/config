@@ -1,0 +1,69 @@
+# i3status configuration file.
+# see "man i3status" for documentation
+
+# It is important that this file is edited as UTF-8.
+# The following line should contain a sharp s:
+# ß
+# If the above line is not correctly displayed, fix your editor first!
+
+general {
+	colors = true
+	interval = 5
+}
+
+order += "net_rate"
+order += "diskdata"
+order += "loadavg"
+order += "spotify"
+order += "memory"
+order += "sysdata"
+order += "volume_status"
+order += "toggle_redshift"
+order += "tztime local"
+
+net_rate {
+	format = "{down} - {up}"
+}
+
+
+diskdata {
+	format = "💾 {used_percent}%"
+}
+
+loadavg {
+        format = "🖥️ %{1avg}"
+}
+
+spotify {
+	format = "💽 {artist} - {title}"
+	format_down = ""
+	on_click 1 = "exec playerctl --player=spotify play-pause"
+	on_click 2 = '[class="Spotify"] focus'
+	on_click 3 = "exec playerctl --player=spotify next"
+}
+
+memory {
+	format = "  %percentage_used"
+	threshold_degraded = "1G"
+	format_degraded = "MEMORY < %available"
+}
+
+sysdata {
+	format = "🌡️ {cpu_temp}"
+}
+
+volume_status {
+	blocks = "🔈🔉🔊"
+	format = "{icon}: {percentage}"
+	format_muted = "🔇"
+}
+
+toggle_redshift {
+	k = 3480
+}
+
+tztime local {
+	format = "🕗 %Y-%m-%d %H:%M:%S"
+	on_click 1 = "exec gsimplecal"
+}
+

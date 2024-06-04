@@ -1,0 +1,9 @@
+[/]
+custom-keybindings=['/org/gnome/settings-daemon/plugins/media-keys/custom-keybindings/custom0/']
+screensaver=['<Primary><Super>l']
+terminal=['<Primary><Alt>t']
+
+[custom-keybindings/custom0]
+binding='<Super>space'
+command='rofi -show combi'
+name='rofi'

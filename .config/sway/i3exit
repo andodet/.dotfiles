@@ -1,0 +1,36 @@
+#!/bin/sh
+
+lock() {
+  swaylock
+}
+
+case "$1" in
+  lock)
+    # lock --daemonize && sleep 2 && swaymsg "output * dpms off"
+    swayidle -w \
+      timeout 2 'swaylock -f' \
+      timeout 5 'swaymsg "output * dpms off"' \
+      resume 'swaymsg "output * dpms on"' \
+      before-sleep "swaylock -f"
+    ;;
+  logout)
+    i3-msg exit
+    ;;
+  suspend)
+    swaylock --daemonize && systemctl suspend
+    ;;
+  hibernate)
+    swaylock --daemonize && systemctl hibernate
+    ;;
+  reboot)
+    systemctl reboot
+    ;;
+  shutdown)
+    systemctl poweroff
+    ;;
+  *)
+    echo "Usage: $0 {lock|logout|suspend|hibernate|reboot|shutdown}"
+    exit 2
+esac
+                                                                                                                                                
+exit 0
