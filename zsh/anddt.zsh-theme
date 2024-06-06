@@ -33,7 +33,7 @@ function get_current_host() {
    hn=$(hostname)
 
    # Local machines
-   if [ ! "$hn" = "timesink" ]; then
+   if [ ! "$hn" = "timesink" ] && [ ! "$hn" = "werk" ]; then
        echo -n "%{$fg[red]%}"
    fi
 
