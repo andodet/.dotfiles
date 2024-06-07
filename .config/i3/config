@@ -176,10 +176,10 @@ mode "resize" {
         bindsym l resize grow width 3 px or 3 ppt
 
         # same bindings, but for the arrow keys
-        bindsym Left resize shrink width 3 px or 3 ppt
-        bindsym Down resize grow height 3 px or 3 ppt
-        bindsym Up resize shrink height 3 px or 3 ppt
-        bindsym Right resize grow width 3 px or 3 ppt
+        bindsym Left resize shrink width 5 px or 5 ppt
+        bindsym Down resize grow height 5 px or 5 ppt
+        bindsym Up resize shrink height 5 px or 5 ppt
+        bindsym Right resize grow width 5 px or 5 ppt
 
         # back to normal: Enter or Escape or $mod+r
         bindsym Return mode "default"
@@ -189,13 +189,18 @@ mode "resize" {
 
 bindsym $mod+r mode "resize"
 
-# Start i3bar to display a workspace bar (plus the system information i3status
-# finds out, if available)
+# Define 2 bars, the one on the second monitor will just show workspaces
 bar {
 	position bottom
+        output primary
         status_command py3status
         separator_symbol "|"
 }
+
+bar {
+        output DP-0
+}
+
 for_window [all] title_window_icon yes
 for_window [all] title_window_icon_padding 3px
 

@@ -12,11 +12,12 @@ general {
 }
 
 order += "net_rate"
-order += "diskdata"
-order += "loadavg"
 order += "spotify"
 order += "memory"
-order += "sysdata"
+order += "diskdata"
+order += "loadavg"
+order += "lm_sensors"
+order += "nvidia_smi"
 order += "volume_status"
 order += "toggle_redshift"
 order += "tztime local"
@@ -48,8 +49,16 @@ memory {
 	format_degraded = "MEMORY < %available"
 }
 
-sysdata {
-	format = "🌡️ {cpu_temp}"
+
+lm_sensors {
+	format_chip = '[\?if=name=coretemp-isa-0000 🌡️ ]'
+	format_chip += '{format_sensor}'
+	format_sensor = '\?color=auto.input {input}°C'
+	sensors = ["package_id_0"]
+}
+
+nvidia_smi {
+    format_gpu = 'GPU: [\?color=temperature.gpu {temperature.gpu}°C] '
 }
 
 volume_status {

@@ -113,7 +113,7 @@ else
   -- vim.keymap.set("n", "<leader>bm", "<C-W>=", { desc = "minimize a window" })
 
   -- telescope
-  vim.keymap.set("n", "<leader>pf", [[<cmd>Telescope find_files<CR>]], { desc = "Telescope search files" })
+  vim.keymap.set("n", "<leader><leader>f", [[<cmd>Telescope find_files<CR>]], { desc = "Telescope search files" })
   vim.keymap.set("n", "<C-p>", [[<cmd>Telescope git_files<CR>]], { desc = "Telescope search files" })
   vim.keymap.set("n", "<leader>fs", [[<cmd>Telescope lsp_document_symbols<CR>]], { desc = "Telescope LSP doc symbols" })
   vim.keymap.set("n", "<leader>fS", [[<cmd>Telescope lsp_dynamic_workspace_symbols<CR>]],
