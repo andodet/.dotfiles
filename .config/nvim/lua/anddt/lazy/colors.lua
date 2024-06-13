@@ -62,7 +62,7 @@ return {
           }
         }
       })
-      vim.cmd("colorscheme kanagawa-dragon")
+      -- vim.cmd("colorscheme kanagawa-dragon")
     end
   },
   {
@@ -76,8 +76,8 @@ return {
       require("onedark").setup({
         style = "darker",
         colors = {
-          grey = "#5c5c5c",  -- define a new color
-          green = "#00ffaa", -- redefine an existing color
+          grey = "#878787", -- define a new color
+          green = "#00ffaa", -- redefine an existing color        },
         },
         highlights = {
           Visual = { bg = "#4a4a4a" },
@@ -89,9 +89,8 @@ return {
           strings = 'none',
           variables = 'none'
         },
-
       })
-      -- vim.cmd("colorscheme onedark")
+      vim.cmd("colorscheme onedark")
     end,
   },
   {

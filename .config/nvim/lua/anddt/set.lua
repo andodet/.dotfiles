@@ -34,4 +34,5 @@ else
 
   -- add some delay to lsp errors
   vim.opt.updatetime = 250
+  vim.cmd("hi link @string.documentation.python SpecialComment")
 end

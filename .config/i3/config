@@ -89,7 +89,6 @@ bindsym $mod+Shift+Right move right
 bindsym $mod+Shift+minus mark "alpha", move scratchpad
 bindsym $mod+semicolon [con_mark="alpha"] scratchpad show
 
-
 # split in horizontal orientation
 bindsym $mod+b split h
 
@@ -191,7 +190,7 @@ bindsym $mod+r mode "resize"
 
 # Define 2 bars, the one on the second monitor will just show workspaces
 bar {
-	position bottom
+        position bottom
         output primary
         status_command py3status
         separator_symbol "|"

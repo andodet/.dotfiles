@@ -9,6 +9,7 @@ return {
 
         neogen.setup({
             enabled = true,
+            input_after_comment = false,
             languages = {
                 python = {
                     template = {

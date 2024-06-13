@@ -15,7 +15,8 @@ return {
       "j-hui/fidget.nvim",
       "creativenull/efmls-configs-nvim",
       "ray-x/lsp_signature.nvim",
-      "microsoft/python-type-stubs"
+      "microsoft/python-type-stubs",
+      "hrsh7th/cmp-cmdline"
     },
     config = function()
       local lsp = require("lsp-zero")
@@ -68,7 +69,8 @@ return {
       -- key bindings
       lsp.on_attach(function(client, bufnr)
         local opts = { buffer = bufnr, remap = false }
-        lsp_format_on_save(bufnr)
+        -- lsp_format_on_save(bufnr)
+        lsp.buffer_autoformat()
         require "lsp_signature".on_attach({
           bind = true, -- This is mandatory, otherwise border config won't get registered.
           hint_enable = false,
@@ -171,11 +173,10 @@ return {
               unusedparams = true
             },
             staticcheck = true,
-            gofumpt = true
+            gofumpt = false
           }
         }
       })
-      local goimports = require('efmls-configs.formatters.goimports')
       local golines = require("efmls-configs.formatters.golines")
       local black = require("efmls-configs.formatters.black")
       local py_formatters = {
@@ -195,7 +196,6 @@ return {
         init_options = { documentFormatting = true },
         settings = {
           languages = {
-            go = { goimports },
             typescript = { prettier },
             javascript = { prettier },
             html = { prettier },
@@ -203,7 +203,8 @@ return {
             markdown = { prettier },
             json = { prettier },
             python = { py_formatters["isort"], black },
-            sh = { shfmt }
+            sh = { shfmt },
+            go = { golines }
           },
         },
       })
@@ -252,6 +253,20 @@ return {
           vim.b.copilot_suggestion_hidden = false
         end)
       })
+      -- vim cmd line autocomplete
+      -- cmp.setup.cmdline(':', {
+      --   mapping = cmp.mapping.preset.cmdline(),
+      --   sources = cmp.config.sources({
+      --     { name = 'path' }
+      --   }, {
+      --     {
+      --       name = 'cmdline',
+      --       option = {
+      --         ignore_cmds = { 'Man', '!' }
+      --       }
+      --     }
+      --   })
+      -- })
 
       vim.diagnostic.config({
         -- update_in_insert = true,

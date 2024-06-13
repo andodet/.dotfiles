@@ -51,6 +51,7 @@ memory {
 
 
 lm_sensors {
+	cache_timeout = 5
 	format_chip = '[\?if=name=coretemp-isa-0000 🌡️ ]'
 	format_chip += '{format_sensor}'
 	format_sensor = '\?color=auto.input {input}°C'
