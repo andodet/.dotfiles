@@ -31,7 +31,6 @@ sudo apt-get install -y \
 	libxmlsec1-dev \
 	libffi-dev \
 	liblzma-dev \
-	neovim \
 	tig
 
 curl -sS https://download.spotify.com/debian/pubkey_6224F9941A8AA6D1.gpg | sudo gpg --dearmor --yes -o /etc/apt/trusted.gpg.d/spotify.gpg
@@ -42,15 +41,12 @@ sudo add-apt-repository -y ppa:longsleep/golang-backports
 
 sudo apt update
 sudo apt install -y \
-	r-base \
-	r-base-dev \
 	fonts-go \
 	tmux \
 	zsh \
 	spotify-client \
-	s-tui \
 	htop \
-	gnome-tweaks \
+	btop \
 	direnv \
 	golang-go \
 	ripgrep \
@@ -74,6 +70,3 @@ echo \
 	$(lsb_release -cs) stable" | sudo tee /etc/apt/sources.list.d/docker.list >/dev/null
 
 sudo apt-get update && sudo apt-get install -y docker-ce docker-ce-cli containerd.io docker-compose-plugin
-
-# Go mono font
-sudo apt install -y fonts-firacode

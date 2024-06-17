@@ -197,7 +197,10 @@ bar {
 }
 
 bar {
+        position bottom
         output DP-0
+        status_command py3status --config=${HOME}/.config/i3status/config_secondary
+        separator_symbol "|"
 }
 
 for_window [all] title_window_icon yes
