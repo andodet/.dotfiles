@@ -76,7 +76,7 @@ return {
       require("onedark").setup({
         style = "darker",
         colors = {
-          grey = "#878787", -- define a new color
+          grey = "#878787",  -- define a new color
           green = "#00ffaa", -- redefine an existing color        },
         },
         highlights = {

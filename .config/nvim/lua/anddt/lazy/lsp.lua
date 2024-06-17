@@ -142,7 +142,6 @@ return {
       --     },
       --   },
       -- })
-
       lspconfig.ruff_lsp.setup({})
       -- lspconfig.ruff.setup({
       -- })
@@ -167,18 +166,30 @@ return {
       lspconfig.tsserver.setup({})
       lspconfig.eslint.setup({})
       lspconfig.gopls.setup({
+        on_attach = function(client, bufnr)
+          -- goimports = gofmt + goimports
+          local format_sync_grp = vim.api.nvim_create_augroup("GoFormat", {})
+          vim.api.nvim_create_autocmd("BufWritePre", {
+            pattern = "*.go",
+            callback = function()
+              require('go.format').goimports()
+            end,
+            group = format_sync_grp,
+          })
+        end,
         settings = {
           gopls = {
             analyses = {
               unusedparams = true
             },
             staticcheck = true,
-            gofumpt = false
+            -- gofumpt = true
           }
         }
       })
-      local golines = require("efmls-configs.formatters.golines")
+      -- local golines = require("efmls-configs.formatters.golines")
       local black = require("efmls-configs.formatters.black")
+      local ruff_sort = require("efmls-configs.formatters.ruff_sort")
       local py_formatters = {
         isort = {
           formatCommand = "/home/anddt/.local/bin/isort  -",
@@ -192,7 +203,7 @@ return {
       }
       local shfmt = require("efmls-configs.formatters.shfmt")
       lspconfig.efm.setup({
-        filetypes = { "python", "javascript", "typescript", "html", "yaml", "markdown", "json", "go" },
+        filetypes = { "python", "javascript", "typescript", "html", "yaml", "markdown", "json" },
         init_options = { documentFormatting = true },
         settings = {
           languages = {
@@ -202,7 +213,7 @@ return {
             yaml = { prettier },
             markdown = { prettier },
             json = { prettier },
-            python = { py_formatters["isort"], black },
+            python = { ruff_sort },
             sh = { shfmt },
             go = { golines }
           },
