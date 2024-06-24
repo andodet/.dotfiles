@@ -130,7 +130,6 @@ else
   vim.keymap.set("n", "<leader>pv", [[<cmd> lua require("swenv.api").pick_venv()<CR>]], { desc = "Select python venv" })
 
   -- code
-  vim.keymap.set("n", "<leader>el", [[<cmd>TroubleToggle<CR>]], { desc = "Toggle trouble pane" })
   vim.keymap.set("n", "<leader>en", [[<cmd>lua vim.diagnostic.goto_next()<CR>]], { desc = "Go to next problem" })
   vim.keymap.set("n", "<leader>ep", [[<cmd>lua vim.diagnostic.goto_prev()<CR>]], { desc = "Go to previous problem" })
 

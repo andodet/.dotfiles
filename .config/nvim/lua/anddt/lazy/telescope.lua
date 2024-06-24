@@ -1,16 +1,19 @@
 return {
     "nvim-telescope/telescope.nvim",
-
-    tag = "0.1.5",
-
     dependencies = {
         "nvim-lua/plenary.nvim",
-        'gbrlsnchs/telescope-lsp-handlers.nvim'
+        'gbrlsnchs/telescope-lsp-handlers.nvim',
+        -- "junegunn/fzf",
+        -- {
+        --     'nvim-telescope/telescope-fzf-native.nvim',
+        --     build = 'make',
+        -- }
     },
 
     config = function()
         local actions = require("telescope.actions")
-        require('telescope').setup({
+        local telescope = require("telescope")
+        telescope.setup({
             defaults = {
                 mappings = {
                     i = {
@@ -35,7 +38,14 @@ return {
             },
             extensions = {
                 lsp_handlers = {},
-                lsp_workspace_symbols = {}
+                lsp_workspace_symbols = {},
+                -- fzf = {
+                --     fuzzy = true,                   -- false will only do exact matching
+                --     override_generic_sorter = true, -- override the generic sorter
+                --     override_file_sorter = true,    -- override the file sorter
+                --     case_mode = "smart_case",       -- or "ignore_case" or "respect_case"
+                --     -- the default case_mode is "smart_case"
+                -- }
             }
         })
         local builtin = require("telescope.builtin")
@@ -50,6 +60,13 @@ return {
             local word = vim.fn.expand("<cWORD>")
             builtin.grep_string({ search = word })
         end)
+        -- vim.keymap.set("n", "<C-p>", function()
+        --     require("fzf-lua").git_files({
+        --         cwd = vim.fn.getcwd(),
+        --         previewer = false,
+        --         scrollbar = false,
+        --     })
+        -- end)
     end,
     cond = vim.fn.exists('g:vscode') == 0
 }

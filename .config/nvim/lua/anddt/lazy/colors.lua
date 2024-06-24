@@ -81,6 +81,7 @@ return {
         },
         highlights = {
           Visual = { bg = "#4a4a4a" },
+          -- Visual = { bg = "#3d3d3d" },
         },
         code_style = {
           comments = 'none',
