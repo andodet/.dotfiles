@@ -8,7 +8,8 @@ sudo apt-get install \
 	nitrogen \
 	rofi \
 	dunst \
-	gsimplecal
+	gsimplecal \
+	lm-sensors
 
 cp -rf .config/i3 ~/.config
 cp -rf .config/i3status ~/.config

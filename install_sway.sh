@@ -8,7 +8,8 @@ sudo apt-get install -y \
 	kanshi \
 	rofi \
 	dunst \
-	grimshot
+	grimshot \
+	lm-sensors
 
 echo "copying config files"
 cp -rf .config/sway ~/.config
