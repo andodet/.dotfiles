@@ -59,7 +59,11 @@ git clone https://github.com/pyenv/pyenv.git ~/.pyenv
 git clone https://github.com/pyenv/pyenv-virtualenv.git $(pyenv root)/plugins/pyenv-virtualenv
 
 mkdir -p ~/code/go
+
+# oh-my-zsh
 sh -c "$(curl -fsSL https://raw.githubusercontent.com/ohmyzsh/ohmyzsh/master/tools/install.sh)" "" --unattended
+git clone https://github.com/zsh-users/zsh-autosuggestions ${ZSH_CUSTOM:-~/.oh-my-zsh/custom}/plugins/zsh-autosuggestions
+git clone git@github.com:redxtech/zsh-kitty.git ${ZSH_CUSTOM:-~/.oh-my-zsh/custom}/plugins/zsh-kitty
 
 # Docker
 sudo mkdir -p /etc/apt/keyrings

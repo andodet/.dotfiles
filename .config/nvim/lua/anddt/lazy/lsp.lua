@@ -143,8 +143,6 @@ return {
       --   },
       -- })
       lspconfig.ruff_lsp.setup({})
-      -- lspconfig.ruff.setup({
-      -- })
       lspconfig.pyright.setup({
         flags = {
           debounce_text_changes = 250,

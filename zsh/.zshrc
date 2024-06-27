@@ -160,6 +160,8 @@ alias dkr="docker"
 alias ktdark="source ~/.config/kitty/toggle_theme.sh"
 alias ainv="export PYTHONPATH=${PYTHONPATH}:./models && nv"
 alias tm="tmux"
+alias ff="firefox"
+alias ffpm="firefox -ProfileManager"
 
 # Restore delete up beginning of line
 bindkey \^U backward-kill-line

@@ -5,7 +5,6 @@ return {
     cond = vim.fn.exists('g:vscode') == 0,
     config = function()
       require("gitsigns").setup()
-      require("scrollbar.handlers.gitsigns").setup()
     end,
     opts = {
       -- See `:help gitsigns.txt`
