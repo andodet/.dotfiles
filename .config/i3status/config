@@ -11,7 +11,6 @@ general {
 	interval = 5
 }
 
-order += "net_rate"
 order += "spotify"
 order += "memory"
 order += "diskdata"
@@ -21,11 +20,6 @@ order += "nvidia_smi"
 order += "volume_status"
 order += "toggle_redshift"
 order += "tztime local"
-
-net_rate {
-	format = "{down} - {up}"
-}
-
 
 diskdata {
 	format = "💾 {used_percent}%"
