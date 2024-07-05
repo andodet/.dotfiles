@@ -22,6 +22,7 @@ order += "toggle_redshift"
 order += "tztime local"
 
 diskdata {
+	disk="nvme0"
 	format = "💾 {used_percent}%"
 }
 
