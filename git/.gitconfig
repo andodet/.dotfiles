@@ -1,6 +1,6 @@
 [user]
-	name = andodet
-	email = an.dodet@gmail.com
+    name = andodet
+    email = an.dodet@gmail.com
 
 [alias]
     p = push
@@ -50,6 +50,7 @@
     filemode = true
 [credential]
     helper = cache
+
 [advice]
   addIgnoredFile = false
 

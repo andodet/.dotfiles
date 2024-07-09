@@ -23,7 +23,7 @@ return {
                 },
                 file_ignore_patterns = {
                     "/usr/lib/go*/**", -- this is clearly not working
-                    ".git/",
+                    "%.git/",
                     "node_modules/",
                     "vendor/",
                     ".venv*"

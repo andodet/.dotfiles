@@ -125,10 +125,16 @@ source $ZSH/oh-my-zsh.sh
 # alias ohmyzsh="mate ~/.oh-my-zsh"
 
 # Pyenv settings
-if command -v pyenv 1>/dev/null 2>&1; then
-  eval "$(pyenv init -)"
-fi
-eval "$(pyenv virtualenv-init -)"
+#if command -v pyenv 1>/dev/null 2>&1; then
+#  eval "$(pyenv init -)"
+#fi
+#eval "$(pyenv virtualenv-init -)"
+pyenv() {
+    eval "$(command pyenv init -)"
+    eval "$(pyenv virtualenv-init -)"
+
+    pyenv "$@"
+}
 
 # Set up radian R console
 alias r="python -m radian"
@@ -147,7 +153,6 @@ alias dc="docker compose"
 alias xop="xdg-open"
 alias todo="nvim ~/Documents/sm-notes/TODO.md"
 alias dcai="dc run ai"  
-alias cdai="code ~/code/diva/ai"
 alias nau="nautilus"
 alias nv="nvim"
 alias icat="kitty +kitten icat"
@@ -158,7 +163,6 @@ alias gtklight="gsettings set org.gnome.desktop.interface color-scheme 'prefer-l
 alias gtkdark="gsettings set org.gnome.desktop.interface color-scheme 'prefer-dark'"
 alias dkr="docker"
 alias ktdark="source ~/.config/kitty/toggle_theme.sh"
-alias ainv="export PYTHONPATH=${PYTHONPATH}:./models && nv"
 alias tm="tmux"
 alias ff="firefox"
 alias ffpm="firefox -ProfileManager"

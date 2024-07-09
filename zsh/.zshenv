@@ -3,7 +3,7 @@ export HSA_OVERRIDE_GFX_VERSION=10.3.0
 
 export PYENV_ROOT="$HOME/.pyenv"
 export PATH="$PYENV_ROOT/bin:$PATH"
-export GOPATH="$HOME/code/go"
+export GOPATH="$HOME/go"
 export PATH="$GOPATH/bin:$PATH"
 
 export PATH=$PATH:~/.local/bin

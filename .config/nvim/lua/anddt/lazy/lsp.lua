@@ -18,6 +18,7 @@ return {
       "microsoft/python-type-stubs",
       "hrsh7th/cmp-cmdline"
     },
+    commit = "9c9eb07",
     config = function()
       local lsp = require("lsp-zero")
       lsp.extend_lspconfig()
@@ -39,12 +40,9 @@ return {
           "tsserver",
           "eslint",
           "ruff_lsp",
-          -- "ruff",
-          -- "pylsp",
           "pyright",
-          -- "basedpyright",
           "gopls",
-          "efm",
+          "efm"
         },
         handlers = {
           function(server_name) -- default handler (optional)
@@ -167,13 +165,13 @@ return {
         on_attach = function(client, bufnr)
           -- goimports = gofmt + goimports
           local format_sync_grp = vim.api.nvim_create_augroup("GoFormat", {})
-          vim.api.nvim_create_autocmd("BufWritePre", {
-            pattern = "*.go",
-            callback = function()
-              require('go.format').goimports()
-            end,
-            group = format_sync_grp,
-          })
+          -- vim.api.nvim_create_autocmd("BufWritePre", {
+          --   pattern = "*.go",
+          --   callback = function()
+          --     require('go.format').goimports()
+          --   end,
+          --   group = format_sync_grp,
+          -- })
         end,
         settings = {
           gopls = {
@@ -181,11 +179,11 @@ return {
               unusedparams = true
             },
             staticcheck = true,
-            -- gofumpt = true
+            gofumpt = true
           }
         }
       })
-      -- local golines = require("efmls-configs.formatters.golines")
+      local golines = require("efmls-configs.formatters.golines")
       local black = require("efmls-configs.formatters.black")
       local ruff_sort = require("efmls-configs.formatters.ruff_sort")
       local py_formatters = {
@@ -213,7 +211,6 @@ return {
             json = { prettier },
             python = { ruff_sort },
             sh = { shfmt },
-            go = { golines }
           },
         },
       })
@@ -222,7 +219,7 @@ return {
           async = true,
         },
         servers = {
-          ["efm"] = { "javascript", "typescript", "html", "yaml", "markdown", "json", "python", "go", "sh" },
+          ["efm"] = { "javascript", "typescript", "html", "yaml", "markdown", "json", "python", "sh" },
         },
       })
 
