@@ -132,8 +132,6 @@ source $ZSH/oh-my-zsh.sh
 pyenv() {
     eval "$(command pyenv init -)"
     eval "$(pyenv virtualenv-init -)"
-
-    pyenv "$@"
 }
 
 # Set up radian R console
@@ -147,7 +145,6 @@ export PATH=$PATH:~/.local/bin
 
 alias ngrok="/opt/ngrok"
 alias rstudio="rstudio &>/dev/null &"
-alias nvim="/opt/nvim-linux64/bin/nvim"
 alias pe="pyenv"
 alias dc="docker compose"
 alias xop="xdg-open"
@@ -166,6 +163,7 @@ alias ktdark="source ~/.config/kitty/toggle_theme.sh"
 alias tm="tmux"
 alias ff="firefox"
 alias ffpm="firefox -ProfileManager"
+alias ainv="export PYTHONPATH=$PWD/models:$PYTHONPATH && nv"
 
 # Restore delete up beginning of line
 bindkey \^U backward-kill-line

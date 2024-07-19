@@ -40,7 +40,7 @@ return {
           "tsserver",
           "eslint",
           "ruff_lsp",
-          "pyright",
+          "basedpyright",
           "gopls",
           "efm"
         },
@@ -141,30 +141,32 @@ return {
       --   },
       -- })
       lspconfig.ruff_lsp.setup({})
-      lspconfig.pyright.setup({
-        flags = {
-          debounce_text_changes = 250,
-        },
+      lspconfig.basedpyright.setup({
         settings = {
           python = {
             analysis = {
               openFilesOnly = true,
               diagnosticMode = "openFilesOnly",
               typeCheckingMode = "basic",
-              useLibraryCodeForTypes = true
+              useLibraryCodeForTypes = true,
+              autoSearchPathh = true,
+              stubPath = vim.fn.stdpath("data") .. "/lazy/python-type-stubs"
             }
           },
-          pyright = {
+          basedpyright = {
             stubPath = vim.fn.stdpath("data") .. "/lazy/python-type-stubs"
           }
         },
+        -- flags = {
+        --   debounce_text_changes = 50,
+        -- }
       })
       lspconfig.tsserver.setup({})
       lspconfig.eslint.setup({})
       lspconfig.gopls.setup({
         on_attach = function(client, bufnr)
           -- goimports = gofmt + goimports
-          local format_sync_grp = vim.api.nvim_create_augroup("GoFormat", {})
+          -- local format_sync_grp = vim.api.nvim_create_augroup("GoFormat", {})
           -- vim.api.nvim_create_autocmd("BufWritePre", {
           --   pattern = "*.go",
           --   callback = function()
@@ -183,6 +185,7 @@ return {
           }
         }
       })
+
       local golines = require("efmls-configs.formatters.golines")
       local black = require("efmls-configs.formatters.black")
       local ruff_sort = require("efmls-configs.formatters.ruff_sort")
@@ -198,6 +201,7 @@ return {
         formatStdin = true,
       }
       local shfmt = require("efmls-configs.formatters.shfmt")
+      local goimports = require('efmls-configs.formatters.goimports')
       lspconfig.efm.setup({
         filetypes = { "python", "javascript", "typescript", "html", "yaml", "markdown", "json" },
         init_options = { documentFormatting = true },
@@ -209,8 +213,9 @@ return {
             yaml = { prettier },
             markdown = { prettier },
             json = { prettier },
-            python = { ruff_sort },
+            python = { py_formatters["isort"] },
             sh = { shfmt },
+            go = { goimports }
           },
         },
       })
@@ -219,7 +224,7 @@ return {
           async = true,
         },
         servers = {
-          ["efm"] = { "javascript", "typescript", "html", "yaml", "markdown", "json", "python", "sh" },
+          ["efm"] = { "javascript", "typescript", "html", "yaml", "markdown", "json", "python", "sh", "go" },
         },
       })
 

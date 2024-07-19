@@ -50,19 +50,22 @@ return {
           theme = {
             all = {
               ui = {
-                bg_gutter = "none"
+                bg_gutter = "none",
+                whitespace = "#302e2c",
+                bg_visual = "#434C38"
               }
             },
             dragon = {
               ui = {
                 whitespace = "#302e2c",
-                bg_visual = "#363d2d"
+                -- bg_visual = "#363d2d"
+                bg_visual = "#434C38"
               }
             }
           }
         }
       })
-      -- vim.cmd("colorscheme kanagawa-dragon")
+      vim.cmd("colorscheme kanagawa")
     end
   },
   {
@@ -88,10 +91,10 @@ return {
           keywords = 'none',
           functions = 'none',
           strings = 'none',
-          variables = 'none'
+          variables = 'none',
         },
       })
-      vim.cmd("colorscheme onedark")
+      -- vim.cmd("colorscheme onedark")
     end,
   },
   {

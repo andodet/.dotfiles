@@ -32,6 +32,8 @@ else
   vim.opt.foldlevelstart = 99
   vim.opt.foldnestmax = 4
 
+  vim.g.python3_host_prog = "/home/anddt/.pyenv/versions/3.11.7/bin/python"
+
   -- add some delay to lsp errors
   vim.opt.updatetime = 250
   vim.cmd("hi link @string.documentation.python SpecialComment")

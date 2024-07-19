@@ -26,7 +26,9 @@ return {
                     "%.git/",
                     "node_modules/",
                     "vendor/",
-                    ".venv*"
+                    ".venv*",
+                    "./**/venv",
+                    "%venv"
                 },
             },
             pickers = {
