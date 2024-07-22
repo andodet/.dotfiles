@@ -32,7 +32,7 @@ else
   vim.opt.foldlevelstart = 99
   vim.opt.foldnestmax = 4
 
-  vim.g.python3_host_prog = "/home/anddt/.pyenv/versions/3.11.7/bin/python"
+  vim.g.python3_host_prog = "/home/anddt/.pyenv/versions/3.12.4/bin/python"
 
   -- add some delay to lsp errors
   vim.opt.updatetime = 250
