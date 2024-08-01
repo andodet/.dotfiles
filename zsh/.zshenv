@@ -10,11 +10,11 @@ export PATH=$PATH:~/.local/bin
 export RSTUDIO_CHROMIUM_ARGUMENTS="--disable-gpu"
 export PATH="$PATH:~/opt"
 export PATH="/opt:$PATH"
-export PATH="/opt/nvim-linux64/bin/:$PATH"
+export PATH="/opt/nvim-linux64/bin:$PATH"
 export PATH="$PATH:/home/anddt/.local/share/coursier/bin"
 
 export FZF_DEFAULT_COMMAND='rg --hidden -l ""'
-export FZF_CTRL_T_COMMAND='rg --hidden -l ""'
+export FZF_CTRL_T_COMMAND='rg --no-require-git --hidden -l ""'
 export ZSH_AUTOSUGGEST_HIGHLIGHT_STYLE='fg=#838383'
 
 export ZSH_TMUX_AUTOSTART=true

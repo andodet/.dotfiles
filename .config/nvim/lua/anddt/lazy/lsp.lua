@@ -18,6 +18,7 @@ return {
       "microsoft/python-type-stubs",
       "hrsh7th/cmp-cmdline"
     },
+    opts = { format = { timeout_ms = 200 } },
     commit = "9c9eb07",
     config = function()
       local lsp = require("lsp-zero")
@@ -39,7 +40,7 @@ return {
           "rust_analyzer",
           "tsserver",
           "eslint",
-          "ruff_lsp",
+          "ruff",
           "basedpyright",
           "gopls",
           "efm"
@@ -67,8 +68,8 @@ return {
       -- key bindings
       lsp.on_attach(function(client, bufnr)
         local opts = { buffer = bufnr, remap = false }
-        -- lsp_format_on_save(bufnr)
-        lsp.buffer_autoformat()
+        lsp_format_on_save(bufnr)
+        -- lsp.buffer_autoformat()
         require "lsp_signature".on_attach({
           bind = true, -- This is mandatory, otherwise border config won't get registered.
           hint_enable = false,
@@ -140,7 +141,13 @@ return {
       --     },
       --   },
       -- })
-      lspconfig.ruff_lsp.setup({})
+      -- lspconfig.ruff_lsp.setup({})
+      lspconfig.ruff.setup({
+        -- this is done to maintain parity with black formatter
+        cmd = { "ruff", "server" },
+        settings = {
+        }
+      })
       lspconfig.basedpyright.setup({
         settings = {
           python = {
@@ -149,7 +156,8 @@ return {
               diagnosticMode = "openFilesOnly",
               LibraryCodeForTypes = true,
               autoSearchPathh = true,
-              stubPath = vim.fn.stdpath("data") .. "/lazy/python-type-stubs"
+              stubPath = vim.fn.stdpath("data") .. "/lazy/python-type-stubs",
+              typeCheckingMode = "basic",
             }
           },
           basedpyright = {
@@ -161,24 +169,24 @@ return {
       lspconfig.tsserver.setup({})
       lspconfig.eslint.setup({})
       lspconfig.gopls.setup({
-        on_attach = function(client, bufnr)
-          -- goimports = gofmt + goimports
-          -- local format_sync_grp = vim.api.nvim_create_augroup("GoFormat", {})
-          -- vim.api.nvim_create_autocmd("BufWritePre", {
-          --   pattern = "*.go",
-          --   callback = function()
-          --     require('go.format').goimports()
-          --   end,
-          --   group = format_sync_grp,
-          -- })
-        end,
+        -- on_attach = function(client, bufnr)
+        --   -- goimports = gofmt + goimports
+        --   local format_sync_grp = vim.api.nvim_create_augroup("GoFormat", {})
+        --   vim.api.nvim_create_autocmd("BufWritePre", {
+        --     pattern = "*.go",
+        --     callback = function()
+        --       require('go.format').goimports()
+        --     end,
+        --     group = format_sync_grp,
+        --   })
+        -- end,
         settings = {
           gopls = {
             analyses = {
               unusedparams = true
             },
             staticcheck = true,
-            gofumpt = true
+            -- gofumpt = true
           }
         }
       })

@@ -52,7 +52,7 @@ return {
               ui = {
                 bg_gutter = "none",
                 whitespace = "#302e2c",
-                bg_visual = "#434C38"
+                bg_visual = "#363d2d"
               }
             },
             dragon = {
@@ -66,6 +66,7 @@ return {
         }
       })
       vim.cmd("colorscheme kanagawa")
+      vim.cmd("hi QuickFixLine guibg=#38402f")
     end
   },
   {
@@ -84,7 +85,6 @@ return {
         },
         highlights = {
           Visual = { bg = "#4a4a4a" },
-          -- Visual = { bg = "#3d3d3d" },
         },
         code_style = {
           comments = 'none',

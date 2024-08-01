@@ -90,7 +90,7 @@ bindsym $mod+Shift+minus mark "alpha", move scratchpad
 bindsym $mod+semicolon [con_mark="alpha"] scratchpad show
 
 # split in horizontal orientation
-bindsym $mod+b split h
+bindsym $mod+g split h
 
 # split in vertical orientation
 bindsym $mod+v split v
@@ -206,6 +206,7 @@ bar {
 
 for_window [all] title_window_icon yes
 for_window [all] title_window_icon_padding 3px
+for_window [class="Eog"] floating enable
 
 # Keyboard repetition speed
 exec_always --no-startup-id sleep 0.5; xset r rate 150 50

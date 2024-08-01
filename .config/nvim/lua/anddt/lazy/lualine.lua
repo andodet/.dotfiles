@@ -16,7 +16,7 @@ return {
         },
         sections = {
           lualine_a = { 'mode' },
-          lualine_b = { { 'filename', path = 1 } },
+          lualine_b = { { 'filename', path = 0 } },
           lualine_c = { 'branch', 'diff' },
           lualine_x = { "diagnostics", 'encoding', 'fileformat', 'filetype', "copilot" },
           lualine_y = { 'progress' },
