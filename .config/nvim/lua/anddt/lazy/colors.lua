@@ -23,10 +23,14 @@ return {
         vim.cmd("colorscheme default")
         ["@variable.builtin"] = { italic = false }
       else
-        -- vim.cmd("colorscheme nightfox")
+        -- vim.cmd("colorscheme terafox")
         -- vim.cmd("hi Visual guibg=#363d2d")
       end
     end,
+  },
+  {
+    "nanotech/jellybeans.vim",
+    cond = vim.fn.exists('u:vscode') == 0,
   },
   {
     "rebelot/kanagawa.nvim",

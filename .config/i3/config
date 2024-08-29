@@ -11,6 +11,8 @@
 
 set $mod Mod4
 
+workspace_layout stacking
+
 # start with picom compositor as I'm having screen tearing problems withut one
 exec --no-startup-id picom -CGb
 # Font for window titles. Will also be used by the bar unless a different font
