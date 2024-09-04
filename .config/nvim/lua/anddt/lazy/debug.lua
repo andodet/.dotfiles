@@ -121,7 +121,7 @@ return {
         'rcarriga/nvim-dap-ui',
       },
       config = function()
-        require("dap-python").setup("/bin/python3")
+        require("dap-python").setup("/home/anddt/.pyenv/versions/3.12.4/bin/python")
       end
     }
   },

@@ -69,8 +69,8 @@ return {
           }
         }
       })
-      vim.cmd("colorscheme kanagawa")
-      vim.cmd("hi QuickFixLine guibg=#38402f")
+      -- vim.cmd("colorscheme kanagawa")
+      -- vim.cmd("hi QuickFixLine guibg=#38402f")
     end
   },
   {
@@ -88,7 +88,7 @@ return {
           green = "#00ffaa", -- redefine an existing color        },
         },
         highlights = {
-          Visual = { bg = "#4a4a4a" },
+          Visual = { bg = "#383838" },
         },
         code_style = {
           comments = 'none',
@@ -98,7 +98,7 @@ return {
           variables = 'none',
         },
       })
-      -- vim.cmd("colorscheme onedark")
+      vim.cmd("colorscheme onedark")
     end,
   },
   {
