@@ -144,6 +144,7 @@ else
   vim.keymap.set("n", "<leader>gpl", ":Git pull<Space>", { desc = "git pull" })
   vim.keymap.set("n", "<leader>gd", "[[<cmd>Gdiff<CR>]]", { desc = "Diff file" })
   vim.keymap.set("n", "<leader>gl", ":Gclog<CR>", { desc = "Show git log" })
+  vim.keymap.set("n", "<leader>g<leader>", ":Git<Space>", { desc = "Show git log" })
   -- Gitsigns
   vim.keymap.set("n", "<leader>hp", ":Gitsigns preview_hunk_inline<CR>", { desc = "Preview hunk inline" })
   vim.keymap.set("n", "<leader>hr", ":Gitsigns reset_hunk<CR>", { desc = "Gitsigns reset hunk" })

@@ -5,7 +5,7 @@ else
   vim.opt.smartindent = true
 
   vim.opt.swapfile = false
-  vim.opt.cursorline = true
+  vim.opt.cursorline = false
   vim.opt.splitright = true
   vim.opt.splitbelow = true
   vim.opt.signcolumn = "yes"

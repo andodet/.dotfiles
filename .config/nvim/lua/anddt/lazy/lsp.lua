@@ -78,7 +78,11 @@ return {
             -- border = "rounded",
           }
         }, bufnr)
-        vim.keymap.set("n", "gd", function()
+        vim.keymap.set("n", "gds", function()
+          vim.cmd([[split]])
+          vim.lsp.buf.definition()
+        end, opts)
+        vim.keymap.set("n", "gdS", function()
           vim.cmd([[vsplit]])
           vim.lsp.buf.definition()
         end, opts)
