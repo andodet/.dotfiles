@@ -11,7 +11,8 @@ general {
         interval = 5
 }
 
-#order += "wifi"
+# order += "net_rate"
+order += "wifi"
 order += "disk /"
 order += "load"
 order += "spotify"
@@ -19,11 +20,16 @@ order += "memory"
 order += "sysdata"
 order += "volume_status"
 order += "battery_level"
+order += "toggle_redshift"
 order += "tztime local"
 
 
+# net_rate {
+#         format = " {down}  {up}"
+# }
+
 wifi {
-	format = "{icon}"
+	format = "{icon} {ssid}"
 }
 
 
@@ -40,7 +46,7 @@ spotify {
 }
 
 memory {
-        format = "RAM: %percentage_used"
+        format = "󰍛: %percentage_used"
         threshold_degraded = "1G"
         format_degraded = "MEMORY < %available"
 }
@@ -52,11 +58,18 @@ sysdata {
 volume_status {
 	blocks = "🔈🔉🔊"
 	format = "{icon}: {percentage}"
-	format_muted = "🔇"
+	format_muted = "🔊: ❌"
 }
 
 battery_level {
-	format = "󱊢:{percent}%"
+    format = "{icon}:{percent}% ({time_remaining})"
+    charging_character = "󰂄"
+    measurement_mode = "sys"
+    hide_seconds = true
+}
+
+toggle_redshift {
+    k = 3450
 }
 
 tztime local {
