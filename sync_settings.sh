@@ -4,6 +4,7 @@ shopt -s extglob
 # tmux
 echo "syncing tmux"
 cp ~/.tmux.conf ./tmux/.tmux.conf
+cp /opt/tmux-sessionizer ./tmux
 # git
 echo "syncing git"
 cp ~/.gitconfig ./git/.gitconfig

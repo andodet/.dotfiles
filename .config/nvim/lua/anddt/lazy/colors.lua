@@ -69,8 +69,8 @@ return {
           }
         }
       })
-      vim.cmd("colorscheme kanagawa")
-      vim.cmd("hi QuickFixLine guibg=#38402f")
+      -- vim.cmd("colorscheme kanagawa")
+      -- vim.cmd("hi QuickFixLine guibg=#38402f")
     end
   },
   {
@@ -121,7 +121,7 @@ return {
           variables = 'none',
         },
       })
-      -- vim.cmd("colorscheme onedark")
+      vim.cmd("colorscheme onedark")
     end,
   },
   {

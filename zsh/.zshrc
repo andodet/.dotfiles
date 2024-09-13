@@ -165,8 +165,13 @@ alias ff="firefox"
 alias ffpm="firefox -ProfileManager"
 alias ainv="export PYTHONPATH=$PWD/models:$PYTHONPATH && nv"
 
+tmux_sessionizer() {
+    eval "$(bash /opt/tmux-sessionizer>/dev/null)"
+}
+
 # Restore delete up beginning of line
 bindkey \^U backward-kill-line
+bindkey -s ^f "bash /opt/tmux-sessionizer\n"
 
 # fzf settings
 source /usr/share/doc/fzf/examples/key-bindings.zsh

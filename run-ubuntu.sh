@@ -3,15 +3,6 @@
 mkdir ~/code ~/fun
 sudo apt update
 
-# Remove snap store
-sudo killall snap-store
-sudo systemctl stop snapd && sudo systemctl disable snapd
-sudo snap remove snap-store
-sudo apt purge -y snapd
-sudo apt install -y --no-install-recommends gnome-software
-sudo systemctl stop var-snap-firefox-common-host\\x2dhunspell.mount
-sudo systemctl disable var-snap-firefox-common-host\\x2dhunspell.mount
-
 # A lot of dependencies
 sudo apt-get install -y \
 	make \
@@ -52,6 +43,9 @@ sudo apt install -y \
 	ripgrep \
 	fzf \
 	zoxide
+
+# Make zsh the main shell
+chsh -s $(which zsh)
 
 # python stuff
 curl -sSL https://install.python-poetry.org | python3 -

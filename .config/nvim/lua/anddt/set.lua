@@ -1,11 +1,11 @@
 if vim.g.vscode then
 else
   vim.opt.termguicolors = true
-  -- vim.opt.guicursor = ""
+  vim.opt.guicursor = ""
   vim.opt.smartindent = true
 
   vim.opt.swapfile = false
-  vim.opt.cursorline = false
+  vim.opt.cursorline = true
   vim.opt.splitright = true
   vim.opt.splitbelow = true
   vim.opt.signcolumn = "yes"
