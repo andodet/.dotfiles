@@ -6,14 +6,7 @@
 #: individual font faces and even specify special fonts for particular
 #: characters.
 
-#font_family      Hack
-font_family FiraCode Nerd Font
-# font_family Liberation Mono
-# font_family JetBrainsMono Nerd Font
-# font_family Hack
-# bold_font        auto
-# italic_font      auto
-# bold_italic_font auto
+font_family PragmaSevka Nerd Font
 
 #: You can specify different fonts for the bold/italic/bold-italic
 #: variants. To get a full list of supported fonts use the `kitty
@@ -27,9 +20,7 @@ font_family FiraCode Nerd Font
 #:     italic_font      Operator Mono Book Italic
 #:     bold_italic_font Operator Mono Medium Italic
 
-font_size 10.2
-
-#: Font size (in pts)
+font_size 11.5
 
 # force_ltr no
 
@@ -50,8 +41,7 @@ font_size 10.2
 #: support, because it will force kitty to always treat the text as
 #: LTR, which FriBidi expects for terminals.
 
-#adjust_line_height 95%
-# adjust_column_width 0
+#adjust_column_width 95%
 
 #: Change the size of each character cell kitty renders. You can use
 #: either numbers, which are interpreted as pixels or percentages
@@ -191,7 +181,7 @@ cursor_shape block
 
 #: Defines the thickness of the underline cursor (in pts)
 
-# cursor_blink_interval -1
+cursor_blink_interval 0
 
 #: The interval (in seconds) at which to blink the cursor. Set to zero
 #: to disable blinking. Negative values mean use system default. Note
@@ -474,7 +464,7 @@ enable_audio_bell no
 #: Enable/disable the audio bell. Useful in environments that require
 #: silence.
 
-# visual_bell_duration 0.0
+# visual_bell_duration 0.5
 
 #: Visual bell duration. Flash the screen when a bell occurs for the
 #: specified number of seconds. Set to zero to disable.
@@ -490,7 +480,7 @@ window_alert_on_bell yes
 #: windows in the tab and the window is not the currently focused
 #: window
 
-# command_on_bell none
+command_on_bell none
 
 #: Program to run when a bell occurs.
 
@@ -1504,6 +1494,6 @@ map alt+shift+9 goto_tab 9
 map alt+shift+0 goto_tab 10
 
 # BEGIN_KITTY_THEME
-# Alabaster
+# Gruvbox Dark Hard
 include current-theme.conf
 # END_KITTY_THEME
