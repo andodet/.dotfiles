@@ -74,6 +74,15 @@ return {
     end
   },
   {
+    "sainnhe/gruvbox-material",
+    cond = vim.fn.exists('u:vscode') == 0,
+    config = function()
+      vim.g.gruvbox_material_disable_italic_comment = true
+      vim.g.gruvbox_material_background = "hard"
+      vim.cmd.colorscheme('gruvbox-material')
+    end
+  },
+  {
     "sho-87/kanagawa-paper.nvim",
     opts = {},
     cond = vim.fn.exists('u:vscode') == 0,
@@ -121,7 +130,7 @@ return {
           variables = 'none',
         },
       })
-      vim.cmd("colorscheme onedark")
+      -- vim.cmd("colorscheme onedark")
     end,
   },
   {

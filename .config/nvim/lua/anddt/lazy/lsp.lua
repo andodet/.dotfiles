@@ -145,6 +145,9 @@ return {
       --     },
       --   },
       -- })
+      --
+
+      lspconfig.omnisharp.setup({})
       -- lspconfig.ruff_lsp.setup({})
       lspconfig.ruff.setup({
         -- this is done to maintain parity with black formatter
@@ -206,7 +209,7 @@ return {
       }
       local prettier = {
         formatCommand =
-        "/usr/local/bin/prettier --stdin-filepath ${INPUT} --config-precedence prefer-file ",
+        "prettier --stdin-filepath ${INPUT} --config-precedence prefer-file ",
         formatStdin = true,
       }
       local shfmt = require("efmls-configs.formatters.shfmt")
