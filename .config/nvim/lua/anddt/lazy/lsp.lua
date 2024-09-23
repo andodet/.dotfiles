@@ -203,7 +203,7 @@ return {
       local ruff_sort = require("efmls-configs.formatters.ruff_sort")
       local py_formatters = {
         isort = {
-          formatCommand = "isort  -",
+          formatCommand = "/home/anddt/.pyenv/versions/3.12.6/bin/isort  -",
           formatStdin = true,
         },
       }

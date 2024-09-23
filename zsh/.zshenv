@@ -28,4 +28,4 @@ source ~/.zshenv_pvt
 # Fix GKE auth lag
 export USE_GKE_GCLOUD_AUTH_PLUGIN=True
 
-. "$HOME/.cargo/env"
+#. "$HOME/.cargo/env"

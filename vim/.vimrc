@@ -11,11 +11,7 @@ set expandtab
 set number!
 " set number
 
-set colorcolumn=120
 highlight ColorColumn ctermbg=59
-
-" Set gruvbox theme
-set background=dark
 
 set relativenumber
 set hlsearch

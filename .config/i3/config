@@ -20,7 +20,7 @@ exec --no-startup-id picom -CGb
 #font pango:FiraCode Nerd Font 10
 # This font is widely installed, provides lots of unicode glyphs, right-to-left
 # text rendering and scalability on retina/hidpi displays (thanks to pango).
-font pango:Hack Nerd Font 10
+font pango:Monospace 10
 
 # Start XDG autostart .desktop files using dex. See also
 # https://wiki.archlinux.org/index.php/XDG_Autostart
@@ -62,7 +62,7 @@ bindsym $mod+d exec --no-startup-id rofi -show window -run-command "i3-msg exec 
 # There also is i3-dmenu-desktop which only displays applications shipping a
 # .desktop file. It is a wrapper around dmenu, so you need that installed.
 # bindcode $mod+40 exec --no-startup-id i3-dmenu-desktop
-bindsym $mod+Print exec --no-startup-id maim -s "/home/$USER/Pictures/$(date +"%Y-%m-%d:%H:%M:%S").png"
+bindsym $mod+Print exec --no-startup-id maim -s | xclip -selection clipboard -t image/png -i
 bindsym Print exec --no-startup-id maim "/home/$USER/Pictures/$(date +"%Y-%m-%d:%H:%M:%S").png"
 
 # change focus

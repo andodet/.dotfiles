@@ -1,5 +1,9 @@
 #!/bin/sh
 
+ubuntu_codename=$1
+
+echo $ubuntu_codename
+
 mkdir ~/code ~/fun
 sudo apt update
 
@@ -22,7 +26,8 @@ sudo apt-get install -y \
 	libxmlsec1-dev \
 	libffi-dev \
 	liblzma-dev \
-	tig
+	tig \
+	zsh
 
 curl -sS https://download.spotify.com/debian/pubkey_6224F9941A8AA6D1.gpg | sudo gpg --dearmor --yes -o /etc/apt/trusted.gpg.d/spotify.gpg
 echo "deb http://repository.spotify.com stable non-free" | sudo tee /etc/apt/sources.list.d/spotify.list
@@ -49,7 +54,7 @@ chsh -s $(which zsh)
 
 # python stuff
 curl -sSL https://install.python-poetry.org | python3 -
-git clone https://github.com/pyenv/pyenv.git ~/.pyenv
+curl https://pyenv.run | bash
 git clone https://github.com/pyenv/pyenv-virtualenv.git $(pyenv root)/plugins/pyenv-virtualenv
 
 mkdir -p ~/code/go
@@ -65,6 +70,6 @@ curl -fsSL https://download.docker.com/linux/ubuntu/gpg | sudo gpg --dearmor -o 
 
 echo \
 	"deb [arch=$(dpkg --print-architecture) signed-by=/etc/apt/keyrings/docker.gpg] https://download.docker.com/linux/ubuntu \
-	$(lsb_release -cs) stable" | sudo tee /etc/apt/sources.list.d/docker.list >/dev/null
+	$ubuntu_codename stable" | sudo tee /etc/apt/sources.list.d/docker.list >/dev/null
 
 sudo apt-get update && sudo apt-get install -y docker-ce docker-ce-cli containerd.io docker-compose-plugin
