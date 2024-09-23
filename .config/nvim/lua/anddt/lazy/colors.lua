@@ -29,10 +29,6 @@ return {
     end,
   },
   {
-    "nanotech/jellybeans.vim",
-    cond = vim.fn.exists('u:vscode') == 0,
-  },
-  {
     "rebelot/kanagawa.nvim",
     cond = vim.fn.exists('u:vscode') == 0,
     config = function()
@@ -56,7 +52,16 @@ return {
               ui = {
                 bg_gutter = "none",
                 whitespace = "#302e2c",
-                bg_visual = "#363d2d"
+                bg_visual = "#363d2d",
+                bg = "#14171a",
+              }
+            },
+            wave = {
+              ui = {
+                bg_gutter = "none",
+                whitespace = "#302e2c",
+                bg_visual = "#363d2d",
+                bg = "#14171a",
               }
             },
             dragon = {
@@ -69,46 +74,16 @@ return {
           }
         }
       })
-      -- vim.cmd("colorscheme kanagawa")
-      -- vim.cmd("hi QuickFixLine guibg=#38402f")
+      vim.cmd("colorscheme kanagawa-wave")
+      vim.cmd("hi QuickFixLine guibg=#38402f")
+      vim.cmd("hi colorColumn guibg=#1f2329")
+      vim.cmd("hi WinSeparator guifg=#35383e")
     end
   },
   {
-    "sainnhe/gruvbox-material",
-    cond = vim.fn.exists('u:vscode') == 0,
+    "jacoborus/tender.vim",
     config = function()
-      vim.g.gruvbox_material_disable_italic_comment = true
-      vim.g.gruvbox_material_background = "hard"
-      vim.cmd.colorscheme('gruvbox-material')
     end
-  },
-  {
-    "sho-87/kanagawa-paper.nvim",
-    opts = {},
-    cond = vim.fn.exists('u:vscode') == 0,
-    config = function()
-      require('kanagawa-paper').setup({
-        undercurl = true,
-        transparent = false,
-        gutter = false,
-        dimInactive = true, -- disabled when transparent
-        terminalColors = true,
-        commentStyle = { italic = true },
-        functionStyle = { italic = false },
-        keywordStyle = { italic = false, bold = false },
-        statementStyle = { italic = false, bold = false },
-        typeStyle = { italic = false },
-        colors = { theme = {}, palette = {} }, -- override default palette and theme colors
-        overrides = function()                 -- override highlight groups
-          return {}
-        end,
-      })
-    end
-  },
-  {
-    "mcchrish/zenbones.nvim",
-    dependencies = { "rktjmp/lush.nvim" },
-    cond = vim.fn.exists('u:vscode') == 0,
   },
   {
     "navarasu/onedark.nvim",
