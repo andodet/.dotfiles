@@ -9,7 +9,8 @@ sudo apt-get install \
 	rofi \
 	dunst \
 	gsimplecal \
-	lm-sensors
+	lm-sensors \
+	maim
 
 cp -rf .config/i3 ~/.config
 cp -rf .config/i3status ~/.config
