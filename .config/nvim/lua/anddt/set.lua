@@ -5,7 +5,7 @@ else
   vim.opt.smartindent = true
 
   vim.opt.swapfile = false
-  vim.opt.cursorline = false
+  vim.opt.cursorline = true
   vim.opt.splitright = true
   vim.opt.splitbelow = true
   vim.opt.signcolumn = "yes"
@@ -21,7 +21,7 @@ else
     -- precedes = "«",
     -- extends = "»"
   }
-  vim.opt.signcolumn = "yes:3"
+  vim.opt.signcolumn = "yes:2"
   vim.cmd("set title")
   -- code folding
   vim.opt.foldmethod = "expr"

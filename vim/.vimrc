@@ -8,13 +8,13 @@ set shiftwidth=4
 
 " On pressing tab, insert 4 spaces
 set expandtab
-set number!
+" set number!
 " set number
 
 highlight ColorColumn ctermbg=59
 
-set relativenumber
-set hlsearch
-set laststatus=2
+" set relativenumber
 set clipboard=unnamed
 set noswapfile
+hi Search ctermfg=black
+hi Visual ctermfg=black

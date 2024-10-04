@@ -62,7 +62,7 @@ bindsym $mod+d exec --no-startup-id rofi -show window -run-command "i3-msg exec 
 # There also is i3-dmenu-desktop which only displays applications shipping a
 # .desktop file. It is a wrapper around dmenu, so you need that installed.
 # bindcode $mod+40 exec --no-startup-id i3-dmenu-desktop
-bindsym $mod+Print exec --no-startup-id maim -s | xclip -selection clipboard -t image/png -i
+bindsym $mod+Print exec --no-startup-id maim -us | xclip -selection clipboard -t image/png -i
 bindsym Print exec --no-startup-id maim "/home/$USER/Pictures/$(date +"%Y-%m-%d:%H:%M:%S").png"
 
 # change focus
@@ -213,7 +213,7 @@ for_window [all] title_window_icon_padding 3px
 for_window [class="Eog"] floating enable
 
 # Keyboard repetition speed
-exec_always --no-startup-id sleep 0.5; xset r rate 150 50
+exec_always --no-startup-id sleep 0.5; xset r rate 250 50
 # Screensaver timeout
 exec_always --no-startup-id sleep 0.5; xset s 300
 
@@ -223,8 +223,11 @@ bindsym XF86AudioNext exec playerctl next
 bindsym XF86AudioPrev exec playerctl previous
 
 workspace 1 output DP-2
+workspace 2 output DP-2
+workspace 3 output DP-2
 workspace 8 output DP-0
 workspace 9 output DP-0
+workspace 0 output DP-0
 
 exec --no-startup-id nitrogen --restore
 

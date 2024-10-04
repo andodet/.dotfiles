@@ -48,5 +48,5 @@ function get_symbol() {
     fi
 }
 
-PROMPT='$(get_current_user)%{$fg[blue]%}$(get_current_host)%{$reset_color%}%{$fg[cyan]%}[%~% ]%(?.%{$fg[green]%}.%{$fg[red]%})%B
+PROMPT='$(get_current_user)%{$fg[yellow]%}$(get_current_host)%{$reset_color%}%{$fg[blue]%}[%~% ]%(?.%{$fg[green]%}.%{$fg[red]%})%B
 $(get_symbol)%b '

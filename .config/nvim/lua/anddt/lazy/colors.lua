@@ -77,6 +77,7 @@ return {
       vim.cmd("colorscheme kanagawa-wave")
       vim.cmd("hi QuickFixLine guibg=#38402f")
       vim.cmd("hi colorColumn guibg=#1f2329")
+      vim.cmd("hi CursorLine guibg=#1f2428")
       vim.cmd("hi WinSeparator guifg=#35383e")
     end
   },

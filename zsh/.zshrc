@@ -147,11 +147,12 @@ alias ngrok="/opt/ngrok"
 alias rstudio="rstudio &>/dev/null &"
 alias pe="pyenv"
 alias dc="docker compose"
-alias xop="xdg-open"
 alias todo="nvim ~/Documents/sm-notes/TODO.md"
 alias dcai="dc run ai"  
 alias nau="nautilus"
 alias nv="nvim"
+alias v="vim"
+alias V="sudo vim"
 alias icat="kitty +kitten icat"
 alias vs-line-reset="python ~/reset_vscode_ln.py"
 alias reds="redshift -O 3500"
@@ -161,9 +162,6 @@ alias gtkdark="gsettings set org.gnome.desktop.interface color-scheme 'prefer-da
 alias dkr="docker"
 alias ktdark="source ~/.config/kitty/toggle_theme.sh"
 alias tm="tmux"
-alias ff="firefox"
-alias ffpm="firefox -ProfileManager"
-alias ainv="export PYTHONPATH=$PWD/models:$PYTHONPATH && nv"
 
 tmux_sessionizer() {
     eval "$(bash /opt/tmux-sessionizer>/dev/null)"
@@ -182,7 +180,11 @@ eval "$(zoxide init zsh)"
 
 # helper function to open files in nautilus
 op() {
-    nohup nautilus -w $1 > /dev/null 2>&1 &
+    nohup nemo $1 > /dev/null 2>&1 &
+}
+
+xop() {
+    nohup xdg-open $1 > /dev/null 2>&1 &
 }
 
 set_termtitle() {

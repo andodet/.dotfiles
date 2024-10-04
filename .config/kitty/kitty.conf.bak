@@ -1494,6 +1494,6 @@ map alt+shift+9 goto_tab 9
 map alt+shift+0 goto_tab 10
 
 # BEGIN_KITTY_THEME
-# Gruvbox Dark Hard
+# Ayu
 include current-theme.conf
 # END_KITTY_THEME
