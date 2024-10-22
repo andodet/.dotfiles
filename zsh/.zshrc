@@ -162,6 +162,7 @@ alias gtkdark="gsettings set org.gnome.desktop.interface color-scheme 'prefer-da
 alias dkr="docker"
 alias ktdark="source ~/.config/kitty/toggle_theme.sh"
 alias tm="tmux"
+alias kssh="kitten ssh"
 
 tmux_sessionizer() {
     eval "$(bash /opt/tmux-sessionizer>/dev/null)"

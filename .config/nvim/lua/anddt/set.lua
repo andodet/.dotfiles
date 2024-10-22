@@ -1,7 +1,7 @@
 if vim.g.vscode then
 else
   vim.opt.termguicolors = true
-  vim.opt.guicursor = ""
+  -- vim.opt.guicursor = ""
   vim.opt.smartindent = true
 
   vim.opt.swapfile = false

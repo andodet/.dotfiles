@@ -1,6 +1,5 @@
 return {
   "mfussenegger/nvim-dap",
-  cond = vim.fn.exists('g:vscode') == 0,
   dependencies = {
     {
       "rcarriga/nvim-dap-ui",

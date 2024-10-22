@@ -12,19 +12,16 @@ return {
     cond = vim.fn.exists('g:vscode') == 0
   },
   {
-    'sainnhe/edge',
-    cond = vim.fn.exists('g:vscode') == 0
-  },
-  {
     'EdenEast/nightfox.nvim',
-    cond = vim.fn.exists('u:vscode') == 0,
     config = function()
       if vim.g.vscode then
         vim.cmd("colorscheme default")
         ["@variable.builtin"] = { italic = false }
       else
         -- vim.cmd("colorscheme terafox")
+        -- vim.cmd("colorscheme terafox")
         -- vim.cmd("hi Visual guibg=#363d2d")
+        -- vim.cmd("hi CursorLine guibg=#1d3337")
       end
     end,
   },
@@ -82,11 +79,6 @@ return {
     end
   },
   {
-    "jacoborus/tender.vim",
-    config = function()
-    end
-  },
-  {
     "navarasu/onedark.nvim",
     config = function()
       require("onedark").setup({
@@ -107,31 +99,6 @@ return {
         },
       })
       -- vim.cmd("colorscheme onedark")
-    end,
-  },
-  {
-    "catppuccin/nvim",
-    config = function()
-      require("catppuccin").setup({
-        no_italic = true,
-        integrations = {
-          native_lsp = {
-            enabled = true,
-            virtual_text = {
-              errors = {},
-              hints = {},
-              warnings = {},
-              information = {},
-            },
-            underlines = {
-              errors = { "undercurl" },
-              hints = { "undercurl" },
-              warnings = { "undercurl" },
-              information = { "undercurl" },
-            },
-          },
-        },
-      })
     end,
   },
 }

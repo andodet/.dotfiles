@@ -2,7 +2,6 @@ return {
   {
     "ThePrimeagen/harpoon",
     branch = "harpoon2",
-    cond = vim.fn.exists('g:vscode') == 0,
     dependencies = { "nvim-lua/plenary.nvim" },
     settings = {
       save_on_toggle = true

@@ -1,11 +1,14 @@
 return {
   {
     "nvim-neotest/neotest",
-    cond = vim.fn.exists('g:vscode') == 0,
     dependencies = {
       "nvim-neotest/neotest-python",
       "nvim-neotest/neotest-go",
-      "nvim-neotest/nvim-nio"
+      "nvim-neotest/nvim-nio",
+      "nvim-neotest/nvim-nio",
+      "nvim-lua/plenary.nvim",
+      "antoinemadec/FixCursorHold.nvim",
+      "nvim-treesitter/nvim-treesitter"
     },
     config = function()
       require("neotest").setup({

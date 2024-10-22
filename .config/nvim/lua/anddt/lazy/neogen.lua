@@ -4,6 +4,7 @@ return {
         "nvim-treesitter/nvim-treesitter",
         "L3MON4D3/LuaSnip",
     },
+    cmd = { "Neogen" },
     config = function()
         local neogen = require("neogen")
 

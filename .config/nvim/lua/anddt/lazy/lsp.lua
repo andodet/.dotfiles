@@ -18,8 +18,8 @@ return {
       "microsoft/python-type-stubs",
       "hrsh7th/cmp-cmdline"
     },
-    opts = { format = { timeout_ms = 200 } },
-    commit = "9c9eb07",
+    opts = { format = { timeout_ms = 300 } },
+    -- commit = "9c9eb07",
     config = function()
       local lsp = require("lsp-zero")
       lsp.extend_lspconfig()
@@ -37,8 +37,7 @@ return {
       require("mason-lspconfig").setup({
         ensure_installed = {
           "lua_ls",
-          "rust_analyzer",
-          "tsserver",
+          "ts_ls",
           "eslint",
           "ruff",
           "basedpyright",
@@ -47,6 +46,10 @@ return {
         },
         handlers = {
           function(server_name) -- default handler (optional)
+            -- They renamed stuff upstream so typescript breaks
+            -- if server_name == "ts_ls" then
+            --   server_name = "tsserver"
+            -- end
             require("lspconfig")[server_name].setup({
               capabilities = capabilities,
             })
@@ -148,7 +151,6 @@ return {
       --
 
       lspconfig.omnisharp.setup({})
-      -- lspconfig.ruff_lsp.setup({})
       lspconfig.ruff.setup({
         -- this is done to maintain parity with black formatter
         cmd = { "ruff", "server" },
@@ -173,7 +175,7 @@ return {
           }
         },
       })
-      lspconfig.tsserver.setup({})
+      lspconfig.ts_ls.setup({})
       lspconfig.eslint.setup({})
       lspconfig.gopls.setup({
         -- on_attach = function(client, bufnr)
@@ -209,7 +211,7 @@ return {
       }
       local prettier = {
         formatCommand =
-        "prettier --stdin-filepath ${INPUT} --config-precedence prefer-file ",
+        "prettier --stdin-filepath ${INPUT}",
         formatStdin = true,
       }
       local shfmt = require("efmls-configs.formatters.shfmt")
@@ -220,7 +222,7 @@ return {
         settings = {
           languages = {
             typescript = { prettier },
-            javascript = { prettier },
+            -- javascript = { prettier },
             html = { prettier },
             yaml = { prettier },
             markdown = { prettier },

@@ -173,6 +173,9 @@ else
     { desc = "Dap Stop", silent = true })
   vim.keymap.set("n", "<leader>fo", "[[<cmd>SymbolsOutline<CR>]]", { desc = "Toggle symbols outline" })
 
+  -- docs
+  vim.keymap.set("n", "<leader>xd", [[<cmd>lua require("neogen").generate()<CR>]], { desc = "Generate docstring" })
+
   -- tests
   vim.keymap.set("n", "<leader>tF", [[<cmd>Neotest run file<CR>]], { desc = "Run entire test file" })
   vim.keymap.set("n", "<leader>tl", [[<cmd>Neotest run last<CR>]], { desc = "Run last testt" })
@@ -183,7 +186,7 @@ else
 
   -- tasks
   vim.keymap.set("n", "<leader>;;", [[<cmd>OverseerToggle<CR>]], { desc = "Toggle Overseer" })
-  vim.keymap.set("n", "<leader>;r", [[<cmd>OverseerRun<CR>]], { desc = "Overseer run" })
+  vim.keymap.set("n", "<leader>;r", [[<cmd>OverseerRestartLast<CR>]], { desc = "Overseer run" })
   vim.keymap.set("n", "<leader>;c", [[<cmd>OverseerRunCmd<CR>]], { desc = "Overseer run cmd" })
   vim.keymap.set("n", "<leader>;q", [[<cmd>OverseerQuickAction<CR>]], { desc = "Overseer quick action" })
 
