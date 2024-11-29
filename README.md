@@ -4,19 +4,17 @@ This repo contains config files and a script to restore a clean Fedora/Ubuntu in
 
 ## Usage
 
-To refresh **all** the config files currently in use, run:
+Dotfiles follow a stow-friendly folder structure to be restored on the host:
 
 ```sh
-sh ./sync_settings.sh
+# stow all folders
+make
+# or stow an individual folder
+stow nvim
 ```
 
-Restore all config files with the following command
+Additional utilities are included in `scripts/` to set up a fresh Ubuntu installation.
 
 ```sh
-sh ./run-ubuntu.sh
+sudo sh scripts/run-ubuntu.sh
 ```
-
-The command above will:
-
-1. Install all relevant libraries and software.
-2. Copy config files where they belong.

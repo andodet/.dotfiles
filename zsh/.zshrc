@@ -59,7 +59,7 @@ ZSH_THEME="anddt"
 # DISABLE_LS_COLORS="true"
 
 # Uncomment the following line to disable auto-setting terminal title.
-DISABLE_AUTO_TITLE="false"
+DISABLE_AUTO_TITLE="true"
 
 # Uncomment the following line to enable command auto-correction.
 # ENABLE_CORRECTION="true"
@@ -163,14 +163,19 @@ alias dkr="docker"
 alias ktdark="source ~/.config/kitty/toggle_theme.sh"
 alias tm="tmux"
 alias kssh="kitten ssh"
+alias imv="imv-x11"
 
-tmux_sessionizer() {
+# Open a new tmux session in a target directory
+function tmux_sessionizer() {
     eval "$(bash /opt/tmux-sessionizer>/dev/null)"
 }
+zle -N tmux_sessionizer{,}
+bindkey ^f tmux_sessionizer
 
 # Restore delete up beginning of line
 bindkey \^U backward-kill-line
-bindkey -s ^f "bash /opt/tmux-sessionizer\n"
+#bindkey -s ^f "bash /opt/tmux-sessionizer\n"
+
 
 # fzf settings
 source /usr/share/doc/fzf/examples/key-bindings.zsh
@@ -188,7 +193,7 @@ xop() {
     nohup xdg-open $1 > /dev/null 2>&1 &
 }
 
-set_termtitle() {
+set_terminal_title() {
     # escape '%' chars in $1, make nonprintables visible
     local a=${(V)1//\%/\%\%}
 
@@ -216,12 +221,14 @@ set_termtitle() {
 }
 
 my_prompt_precmd() {
-    set_termtitle "zsh"
+    set_terminal_title "zsh"
 }
 
 my_prompt_preexec() {
-    set_termtitle "$1"
+    set_terminal_title "$1"
 }
+
+chpwd_functions=(my_prompt_preexec)
 
 typeset -ga precmd_functions
 precmd_functions+=my_prompt_precmd

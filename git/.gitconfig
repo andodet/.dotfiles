@@ -27,9 +27,10 @@
     prum = pull --rebase upstream master
     pum = pull upstream master
     puom = pull origin master
-    puh = pull origin $(git rev-parse --abbrev-ref HEAD)
+    puh = "!git pull origin $(git rev-parse --abbrev-ref HEAD)"
     m = checkout master
     aliases = config --get-regexp alias
+    del-orphan = "!git branch --format \"%(refname:short) %(upstream)\" | awk '{if (!$2) print $1;}' | xargs git b -D"
     recent = for-each-ref --count=10 --sort=-committerdate refs/heads/ --format='%(HEAD) %(color:yellow)%(refname:short)%(color:reset) - %(color:red)%(objectname:short)%(color:reset) - %(contents:subject) - %(authorname) (%(color:green)%(committerdate:relative)%(color:reset))'
     lg = log --oneline
     ctree = lg1-specific --all
