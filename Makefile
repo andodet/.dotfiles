@@ -17,4 +17,5 @@ common:
 	stow rofi
 	stow tmux
 	stow vim
+	stow tig
 	stow -t ~/ergo/qmk_firmware/keyboards/ktec/ergodone/keymaps/anddt ergodox

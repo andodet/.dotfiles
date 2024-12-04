@@ -57,6 +57,28 @@ return {
         },
       })
 
+
+      -- Add borders to documentation hover
+      -- vim.lsp.handlers['textDocument/hover'] = vim.lsp.with(
+      --   vim.lsp.handlers.hover,
+      --   { border = 'single' }
+      -- )
+      --
+      -- For some reason ruff has started acting up (shows "No information available on hover")
+      vim.lsp.handlers['textDocument/hover'] = function(_, result, ctx, config)
+        config = config or { border = 'single' }
+        config.focus_id = ctx.method
+        if not (result and result.contents) then
+          return
+        end
+        local markdown_lines = vim.lsp.util.convert_input_to_markdown_lines(result.contents)
+        markdown_lines = vim.lsp.util.trim_empty_lines(markdown_lines)
+        if vim.tbl_isempty(markdown_lines) then
+          return
+        end
+        return vim.lsp.util.open_floating_preview(markdown_lines, 'markdown', config)
+      end
+
       local augroup = vim.api.nvim_create_augroup('LspFormatting', {})
       local lsp_format_on_save = function(bufnr)
         vim.api.nvim_clear_autocmds({ group = augroup, buffer = bufnr })
@@ -279,12 +301,6 @@ return {
 
       local cmp_select = { behavior = cmp.SelectBehavior.Select }
 
-
-      -- Add borders to documentation hover
-      vim.lsp.handlers['textDocument/hover'] = vim.lsp.with(
-        vim.lsp.handlers.hover,
-        { border = 'single' }
-      )
 
       cmp.setup({
         snippet = {

@@ -18,3 +18,6 @@ set clipboard=unnamed
 set noswapfile
 hi Search ctermfg=black
 hi Visual ctermfg=black
+
+" highlight search matches
+set hlsearch
