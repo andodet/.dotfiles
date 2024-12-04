@@ -1,11 +1,11 @@
 .PHONY: box
 
 box: common
-	stow i3
+	stow sway
 	stow i3status
 
 laptop: common
-	stow sway
+	stow sway_laptop
 	stow i3status
 
 common:
@@ -18,4 +18,5 @@ common:
 	stow tmux
 	stow vim
 	stow tig
-	stow -t ~/ergo/qmk_firmware/keyboards/ktec/ergodone/keymaps/anddt ergodox
+	stow fuzzel
+	#stow -t ~/ergo/qmk_firmware/keyboards/ktec/ergodone/keymaps/anddt ergodox

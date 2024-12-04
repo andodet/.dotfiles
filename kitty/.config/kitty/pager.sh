@@ -3,7 +3,7 @@ set -eu
 
 file_id=$(date +%N)
 
-/opt/nvim-linux64/bin/nvim --clean -u ~/.config/kitty/.vimrc_pager --noplugin -c "set signcolumn=no showtabline=0" -c "silent write! /tmp/$file_id | te cat /tmp/$file_id - "
+nvim --clean -u ~/.config/kitty/.vimrc_pager --noplugin -c "set signcolumn=no showtabline=0" -c "silent write! /tmp/$file_id | te cat /tmp/$file_id - "
 rm /tmp/$file_id
 
 # if [ "$#" -eq 3 ]; then

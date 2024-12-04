@@ -164,6 +164,7 @@ alias ktdark="source ~/.config/kitty/toggle_theme.sh"
 alias tm="tmux"
 alias kssh="kitten ssh"
 alias imv="imv-x11"
+alias jb="jupyter lab"
 
 # Open a new tmux session in a target directory
 function tmux_sessionizer() {
@@ -178,11 +179,8 @@ bindkey \^U backward-kill-line
 
 
 # fzf settings
-source /usr/share/doc/fzf/examples/key-bindings.zsh
+source /usr/share/fzf/key-bindings.zsh
 
-alias jb="jupyter lab"
-
-eval "$(zoxide init zsh)"
 
 # helper function to open files in nautilus
 op() {
@@ -237,3 +235,11 @@ typeset -ga preexec_functions
 preexec_functions+=my_prompt_preexec
 
 __kitty_complete
+
+eval "$(zoxide init zsh)"
+
+# The next line updates PATH for the Google Cloud SDK.
+if [ -f '/opt/google-cloud-cli/path.zsh.inc' ]; then . '/opt/google-cloud-cli/path.zsh.inc'; fi
+
+# The next line enables shell command completion for gcloud.
+if [ -f '/opt/google-cloud-cli/completion.zsh.inc' ]; then . '/opt/google-cloud-cli/completion.zsh.inc'; fi

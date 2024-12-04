@@ -6,12 +6,11 @@ lock() {
 
 case "$1" in
   lock)
-    # lock --daemonize && sleep 2 && swaymsg "output * dpms off"
-    swayidle -w \
-      timeout 2 'swaylock -f' \
-      timeout 5 'swaymsg "output * dpms off"' \
-      resume 'swaymsg "output * dpms on"' \
-      before-sleep "swaylock -f"
+    swayidle \
+      timeout 1 'swaymsg "output * dpms off"' \
+      resume 'swaymsg "output * dpms on"' &
+    swaylock
+    kill %%
     ;;
   logout)
     i3-msg exit

@@ -260,12 +260,7 @@ return {
       local golines = require("efmls-configs.formatters.golines")
       local black = require("efmls-configs.formatters.black")
       local ruff_sort = require("efmls-configs.formatters.ruff_sort")
-      local py_formatters = {
-        isort = {
-          formatCommand = "/home/anddt/.pyenv/versions/3.12.6/bin/isort  -",
-          formatStdin = true,
-        },
-      }
+      local isort = require("efmls-configs.formatters.isort")
       local prettier = {
         formatCommand =
         "prettier --stdin-filepath ${INPUT}",
@@ -284,7 +279,7 @@ return {
             yaml = { prettier },
             markdown = { prettier },
             json = { prettier },
-            python = { py_formatters["isort"] },
+            python = { isort },
             sh = { shfmt },
             go = { goimports }
           },

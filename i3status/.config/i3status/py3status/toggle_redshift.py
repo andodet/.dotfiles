@@ -1,5 +1,21 @@
 import re
 import subprocess
+import os
+
+
+def get_gamma_cmds(session_type: str, gamma: int = 3840) -> tuple[list, list]:
+    if session_type == "x11":
+        cmd_on = ["redshift", "-O", str(gamma)]
+        cmd_off = ["redshift", "-x"]
+    elif session_type == "wayland":
+        cmd_on = ["gammastep", "-P", "-O", str(gamma)]
+        cmd_off = ["gammastep", "-x"]
+    else:
+        cmd_on = ["redshift", "-O", str(gamma)]
+        cmd_off = ["redshift", "-x"]
+        print("Could not infer session type, defaulting to redshif")
+
+    return cmd_on, cmd_off
 
 
 class Py3status:
@@ -10,11 +26,8 @@ class Py3status:
         self.night_light_is_on = False
         self._check_redshift_is_active()
 
-        if subprocess.run(["xrandr", "--verbose"], capture_output=True, shell=True).returncode == 0:
-            self.cmd_on = ["redshift", "-O", "3480"]
-            self.cmd_off = ["redshift", "-x"]
-        else:
-            self.cmd = ["gammastep"]
+        self.session_type = os.getenv("XDG_SESSION_TYPE", "")
+        self.cmd_on, self.cmd_off = get_gamma_cmds(self.session_type, 3840)
 
     def _check_redshift_is_active(self):
         xrandr_output = subprocess.run(["xrandr", "--verbose"], capture_output=True, text=True)
