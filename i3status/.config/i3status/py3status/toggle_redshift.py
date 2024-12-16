@@ -1,9 +1,9 @@
+import os
 import re
 import subprocess
-import os
 
 
-def get_gamma_cmds(session_type: str, gamma: int = 3840) -> tuple[list, list]:
+def get_gamma_cmds(session_type: str, gamma: int = 4000) -> tuple[list, list]:
     if session_type == "x11":
         cmd_on = ["redshift", "-O", str(gamma)]
         cmd_off = ["redshift", "-x"]

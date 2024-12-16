@@ -8,6 +8,9 @@ tmux
 btop
 direnv
 fzf
+jq
+neovim
+vim
 ripgrep
 zoxide
 docker

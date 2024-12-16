@@ -26,9 +26,6 @@ return {
     end,
   },
   {
-    "oahlen/iceberg.nvim",
-  },
-  {
     "rebelot/kanagawa.nvim",
     cond = vim.fn.exists('u:vscode') == 0,
     config = function()
@@ -118,16 +115,16 @@ return {
   {
     "sainnhe/gruvbox-material",
     config = function()
-      -- vim.gruvbox_material_foreground = "mix"
-      -- vim.g.gruvbox_material_enable_italic = false
-      -- vim.g.gruvbox_material_disable_italic_comment = true
-      -- vim.g.gruvbox_material_background = "hard"
-      -- vim.g.gruvbox_material_diagnostic_virtual_text = "highlighted"
-      -- vim.g.gruvbox_material_dim_inactive_windows = 0
-      -- vim.cmd.colorscheme("gruvbox-material")
-      -- vim.api.nvim_set_hl(0, "PmenuSel", { bg = "#458588", fg = "#DDC7A1" })
-      -- vim.api.nvim_set_hl(0, "NormalFLoat", { bg = "#3c3836", fg = "#ebdbb2" })
-      -- vim.api.nvim_set_hl(0, "MatchParen", { bg = "#4f4b4a" })
+      vim.gruvbox_material_foreground = "mix"
+      vim.g.gruvbox_material_enable_italic = false
+      vim.g.gruvbox_material_disable_italic_comment = true
+      vim.g.gruvbox_material_background = "hard"
+      vim.g.gruvbox_material_diagnostic_virtual_text = "highlighted"
+      vim.g.gruvbox_material_dim_inactive_windows = 0
+      vim.cmd.colorscheme("gruvbox-material")
+      vim.api.nvim_set_hl(0, "PmenuSel", { bg = "#458588", fg = "#DDC7A1" })
+      vim.api.nvim_set_hl(0, "NormalFLoat", { bg = "#3c3836", fg = "#ebdbb2" })
+      vim.api.nvim_set_hl(0, "MatchParen", { bg = "#4f4b4a" })
     end
   },
   {
@@ -158,9 +155,9 @@ return {
           variables = 'none',
         },
       })
-      vim.cmd("colorscheme onedark")
-      vim.cmd("hi colorColumn guibg=#1f2329")
-      vim.cmd("hi CursorLine guibg=#1f2428")
+      -- vim.cmd("colorscheme onedark")
+      -- vim.cmd("hi colorColumn guibg=#1f2329")
+      -- vim.cmd("hi CursorLine guibg=#1f2428")
     end,
   },
 }

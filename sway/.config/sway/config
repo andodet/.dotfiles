@@ -1,5 +1,8 @@
+include /etc/sway/config.d/*
+# arch needs this to work for some apps (gparted)
+exec /usr/lib/polkit-gnome/polkit-gnome-authentication-agent-1
+
 set $term kitty
-# set $mod Mod4
 set $mod Mod4
 
 # start with picom compositor as I'm having screen tearing problems withut one
@@ -10,15 +13,16 @@ exec_always pkill kanshi; exec kanshi
 exec --no-startup-id dunst
 # This font is widely installed, provides lots of unicode glyphs, right-to-left
 # text rendering and scalability on retina/hidpi displays (thanks to pango).
-font pango:DejaVuSansM Nerd Font Mono 10
+font pango:DejaVu Sans Mono 10
 titlebar_padding 2
+bindsym $mod+d exec python3 $HOME/.config/sway/window_switcher.py
 # bindsym $mod+d exec --no-startup-id rofi -show window -run-command "i3-msg exec '{cmd}'" -show-icons
 # set $menu --no-startup-id rofi -show drun -run-shell-command "{terminal} -e zsh -ic '{cmd} && read'"
 set $menu fuzzel
 # clipboard
 set $clipboard "~/.local/share/clipman.json"
 exec wl-paste -t text --watch clipman store --max-items 1024
-bindsym Ctrl+F10 exec --no-startup-id clipman pick --tool=CUSTOM --tool-args="fuzzel -d"
+bindsym Ctrl+F10 exec --no-startup-id clipman pick --tool=CUSTOM --tool-args="fuzzel -d -w 100"
 
 # Start XDG autostart .desktop files using dex. See also
 # https://wiki.archlinux.org/index.php/XDG_Autostart
@@ -29,11 +33,10 @@ bindsym Ctrl+F10 exec --no-startup-id clipman pick --tool=CUSTOM --tool-args="fu
 # xss-lock grabs a logind suspend inhibit lock and will use i3lock to lock the
 # screen before suspend. Use loginctl lock-session to lock your screen.
 #exec --no-startup-id xss-lock --transfer-sleep-lock -- i3lock --nofork
-output DP-2 resolution 3840x2160 position 0 1800 scale 1
-output DP-1 resolution 2560x1440 position 3840 1800 scale 1
+output DP-2 resolution 3840x2160 position 0 1800 scale 1 adaptive_sync on
+output DP-1 resolution 2560x1440 position 3840 1800 scale 1 adaptive_sync on
 output DP-1 transform 270
 
-output * background #008080 solid_color
 #and nm-applet is a desktop environment-independent system tray GUI for it.
 exec --no-startup-id nm-applet --indicator
 exec --no-startup-id tuxedo-control-center
@@ -59,7 +62,7 @@ bindsym $mod+space exec $menu
 # .desktop file. It is a wrapper around dmenu, so you need that installed.
 # bindcode $mod+40 exec --no-startup-id i3-dmenu-desktop
 bindsym $mod+Print exec grimshot --notify copy area
-bindsym $mod+shift+Print exec grimshot --notify copy area
+bindsym $mod+shift+Print exec grimshot --notify copy output
 
 # change focus
 bindsym $mod+h focus left
@@ -115,6 +118,9 @@ bindsym $mod+Tab focus mode_toggle
 bindsym $mod+a focus parent
 
 # focus the child container
+bindsym $mod+Shift+a focus child
+
+# focus the child container
 #bindsym $mod+d focus child
 
 # Define names for default workspaces for which we configure key bindings later on.
@@ -161,7 +167,7 @@ bindsym $mod+Shift+9 move container to workspace number $ws9
 bindsym $mod+Shift+0 move container to workspace number $ws10
 
 # Rename workspaces on the fly
-bindsym $mod+n exec i3-input -F 'rename workspace to "'`i3-msg -t get_workspaces | jq '.[] | select(.focused == true)' | jq .num`'%s"' -P "> "
+bindsym $mod+n exec i3-input -F 'rename workspace to "'`swaymsg -t get_workspaces | jq '.[] | select(.focused == true)' | jq .num`'%s"' -P "> "
 
 # some app defaults
 # reload the configuration file
@@ -195,9 +201,17 @@ bindsym $mod+r mode "resize"
 # Start i3bar to display a workspace bar (plus the system information i3status
 # finds out, if available)
 bar {
-	position bottom
-        status_command py3status --wm=sway --config=$HOME/.config/i3status/config -i $HOME/.config/i3status/py3status/ --debug --log-file /tmp/log_py3status.txt
+        position bottom
+        output DP-2
+        status_command py3status --wm=sway --config=$HOME/.config/i3status/config -i $HOME/.config/i3status/py3status/
+        separator_symbol "|"
 }
+
+bar {
+        output DP-1
+        position bottom
+}
+
 bindsym $mod+Shift+e exec swaynag -t warning -m 'You pressed the exit shortcut. Do you really want to exit sway? This will end your Wayland session.' -B 'Yes, exit sway' 'swaymsg exit'
 #for_window [all] title_window_icon yes
 #for_window [all] title_window_icon_padding 3px
@@ -213,13 +227,15 @@ exec_always --no-startup-id sleep 0.5; xset r rate 300 100
 # workspace 9 output DP-1
 
 # Some apps go in the external monitor
-assign [class="Spotify Premium"] 9
+assign [class="Spotify"] 9
 assign [class="Slack"] 8
 
-bindsym $mod+shift+period exec swaynag -t warning -m "(l)ock, (e)xit, switch_(u)ser, (s)uspend, (h)ibernate, (r)eboot, (Shift+s)hutdown" \
+bindsym $mod+shift+period exec swaynag -t warning -m "Log out user" \
         -Z "suspend" "swaymsg 'exec $HOME/.config/sway/i3exit suspend'" \
         -Z "lock" "swaymsg 'exec $HOME/.config/sway/i3exit lock'" \
-        -Z "shutdown" "swaymsg 'exec $HOME/.config/sway/i3exit shutdown'"
+        -Z "reboot" "swaymsg 'exec $HOME/.config/sway/i3exit reboot'" \
+        -Z "shutdown" "swaymsg 'exec $HOME/.config/sway/i3exit shutdown'" \
+        -Z "logout" "swaymsg exit"
 # bindsym $mod+Shift+period mode "$mode_system"
 # set $mode_system (l)ock, (e)xit, switch_(u)ser, (s)uspend, (h)ibernate, (r)eboot, (Shift+s)hutdown
 #
@@ -241,12 +257,10 @@ for_window [class=".*"] border normal
 
 bindsym XF86MonBrightnessDown exec sudo light -U 1
 bindsym XF86MonBrightnessUp exec sudo light -A 1
-input "2362:597:UNIW0001:00_093A:0255_Touchpad" {
-	dwt enabled
-	tap enabled
-	natural_scroll enabled
-	middle_emulation enabled
-        scroll_factor 0.5
+
+input type:pointer {
+    accel_profile "flat"
+    pointer_accel 1
 }
 
 ## Volume control
@@ -296,13 +310,15 @@ input type:keyboard {
 ## Using pulseaudio-utils (append "-s $sinkname" without quotes to override default sink)
 exec dbus-update-activation-environment --systemd DISPLAY WAYLAND_DISPLAY SWAYSOCK
 # Turn off screen
-exec_always swayidle -w \
-         timeout 180 'swaylock -f -c 000000' \
-         timeout 300 'swaymsg "output * dpms off"' resume 'swaymsg "output * dpms on"' \
-         before-sleep 'swaylock -f -c 000000'
 
 exec_always swayidle -w \
-        timeout 500 'swaylock -f -c 000000' \
-        timeout 600 'systemctl suspend' \
-        timeout 620 'swaymsg "output * dpms off"' resume 'swaymsg "output * dpms on"' \
-        before-sleep 'swaylock -f -c 000000'
+         timeout 360 'swaylock -f -c 000000' \
+         timeout 600 'swaymsg "output * dpms off"' resume 'swaymsg "output * dpms on"' \
+         before-sleep 'swaylock -f -c 000000'
+
+# exec swayidle -w \
+#         timeout 1800 'swaylock -f -c 000000' \
+#         timeout 1801 'swaymsg "output * dpms off"' \
+#         timeout 1802 'systemctl suspend' \
+#         resume 'swaymsg "output * dpms on"' \
+#         before-sleep 'swaylock -f -c 000000'

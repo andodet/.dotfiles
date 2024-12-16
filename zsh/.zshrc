@@ -168,7 +168,7 @@ alias jb="jupyter lab"
 
 # Open a new tmux session in a target directory
 function tmux_sessionizer() {
-    eval "$(bash /opt/tmux-sessionizer>/dev/null)"
+    eval "$(bash $HOME/tmux-sessionizer>/dev/null)"
 }
 zle -N tmux_sessionizer{,}
 bindkey ^f tmux_sessionizer
@@ -179,12 +179,13 @@ bindkey \^U backward-kill-line
 
 
 # fzf settings
+source <(fzf --zsh)
+export FZF_DEFAULT_COMMAND='rg --files --hidden'
 source /usr/share/fzf/key-bindings.zsh
-
 
 # helper function to open files in nautilus
 op() {
-    nohup nemo $1 > /dev/null 2>&1 &
+    nohup thunar $1 > /dev/null 2>&1 &
 }
 
 xop() {
@@ -240,6 +241,5 @@ eval "$(zoxide init zsh)"
 
 # The next line updates PATH for the Google Cloud SDK.
 if [ -f '/opt/google-cloud-cli/path.zsh.inc' ]; then . '/opt/google-cloud-cli/path.zsh.inc'; fi
-
 # The next line enables shell command completion for gcloud.
 if [ -f '/opt/google-cloud-cli/completion.zsh.inc' ]; then . '/opt/google-cloud-cli/completion.zsh.inc'; fi

@@ -1,4 +1,5 @@
 filetype plugin indent on
+syntax on
 
 " show existing tab with 4 spaces width
 set tabstop=4
@@ -15,9 +16,9 @@ highlight ColorColumn ctermbg=59
 
 " set relativenumber
 set clipboard=unnamed
-set noswapfile
+" set noswapfile
 hi Search ctermfg=black
-hi Visual ctermfg=black
+" hi Visual ctermfg=black
 
 " highlight search matches
 set hlsearch

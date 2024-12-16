@@ -47,23 +47,23 @@
     default = current
 
 [core]
-    editor = "/opt/nvim-linux64/bin/nvim"
-    ; editor = nvim
+    editor = "nvim"
     pager = "if [ ! -z \"$(which diff-so-fancy)\" ]; then diff-so-fancy | less --tabs=4 -RFX; else less; fi"
     filemode = true
 [credential]
     helper = cache
 
 [advice]
-  addIgnoredFile = false
+    addIgnoredFile = false
 
 [init]
-  defaultBranch = main
+    defaultBranch = main
 
 [url "git@github.com:"]
     insteadOf = https://github.com/
+
 [filter "lfs"]
-	clean = git-lfs clean -- %f
-	smudge = git-lfs smudge -- %f
-	process = git-lfs filter-process
-	required = true
+    clean = git-lfs clean -- %f
+    smudge = git-lfs smudge -- %f
+    process = git-lfs filter-process
+    required = true

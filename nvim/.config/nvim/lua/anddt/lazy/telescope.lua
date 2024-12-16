@@ -2,7 +2,8 @@ return {
     "nvim-telescope/telescope.nvim",
     dependencies = {
         "nvim-lua/plenary.nvim",
-        'gbrlsnchs/telescope-lsp-handlers.nvim',
+        "gbrlsnchs/telescope-lsp-handlers.nvim",
+        "davvid/telescope-git-grep.nvim",
         -- "junegunn/fzf",
         -- {
         --     'nvim-telescope/telescope-fzf-native.nvim',
@@ -50,6 +51,7 @@ return {
                 -- }
             }
         })
+        telescope.load_extension("git_grep")
         local builtin = require("telescope.builtin")
         vim.keymap.set("n", "<leader>pws", function()
             local word = vim.fn.expand("<cword>")
@@ -58,17 +60,9 @@ return {
         vim.keymap.set('n', '<leader><leader>s', function()
             builtin.grep_string({ search = vim.fn.input("Grep > ") })
         end)
-        vim.keymap.set('n', '<leader>pWs', function()
-            local word = vim.fn.expand("<cWORD>")
-            builtin.grep_string({ search = word })
+        vim.keymap.set('n', '<leader>pwg', function()
+            require("git_grep").grep({ search = vim.fn.input("Grep > ") })
         end)
-        -- vim.keymap.set("n", "<C-p>", function()
-        --     require("fzf-lua").git_files({
-        --         cwd = vim.fn.getcwd(),
-        --         previewer = false,
-        --         scrollbar = false,
-        --     })
-        -- end)
     end,
     cond = vim.fn.exists('g:vscode') == 0
 }

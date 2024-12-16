@@ -1,4 +1,3 @@
-export HSA_OVERRIDE_GFX_VERSION=10.3.0
 export PYENV_VIRTUALENV_DISABLE_PROMPT=0
 
 export PYENV_ROOT="$HOME/.pyenv"
@@ -14,8 +13,9 @@ export PATH="/opt/nvim-linux64/bin:$PATH"
 export PATH="$PATH:/home/anddt/.local/share/coursier/bin"
 export PATH="PATH=$HOME/.local/bin/godot:$PATH"
 
-export FZF_DEFAULT_COMMAND='rg --hidden -l ""'
-export FZF_CTRL_T_COMMAND='rg --no-require-git --hidden -l ""'
+export FZF_ALT_C_COMMAND='fd --type d --hidden --exclude .git --exclude node_modules'
+export FZF_DEFAULT_COMMAND='rg -l --exclude .git --exclude node_modules ""'
+export FZF_CTRL_T_COMMAND='rg -l ""'
 export ZSH_AUTOSUGGEST_HIGHLIGHT_STYLE='fg=#838383'
 
 export ZSH_TMUX_AUTOSTART=true

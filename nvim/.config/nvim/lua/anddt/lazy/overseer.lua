@@ -1,6 +1,9 @@
 return {
   'stevearc/overseer.nvim',
   opts = {},
+  dependencies = {
+    "stevearc/dressing.nvim"
+  },
   config = function()
     require("overseer").setup({
       templates = { "builtin" },

@@ -2,7 +2,7 @@ return {
   {
     "neovim/nvim-lspconfig",
     dependencies = {
-      "VonHeikemen/lsp-zero.nvim",
+      { "VonHeikemen/lsp-zero.nvim", branch = "v4.x" },
       "williamboman/mason.nvim",
       "williamboman/mason-lspconfig.nvim",
       "hrsh7th/cmp-nvim-lsp",
@@ -39,8 +39,8 @@ return {
           "ts_ls",
           "eslint",
           "ruff",
-          "basedpyright",
-          -- "pyright",
+          -- "basedpyright",
+          "pyright",
           "gopls",
           "efm"
         },
@@ -187,51 +187,51 @@ return {
         settings = {
         }
       })
-      -- lspconfig.pyright.setup({
-      --   flags = {
-      --     debounce_text_changes = 1000,
-      --     allow_incremental_sync = false,
-      --   },
-      --   settings = {
-      --     python = {
-      --       analysis = {
-      --         openFilesOnly = true,
-      --         diagnosticMode = "openFilesOnly",
-      --         useLibraryCodeForTypes = true,
-      --         autoSearchPathh = true,
-      --         stubPath = vim.fn.stdpath("data") .. "/lazy/python-type-stubs",
-      --         typeCheckingMode = "basic",
-      --       }
-      --     },
-      --     pyright = {
-      --       stubPath = vim.fn.stdpath("data") .. "/lazy/python-type-stubs",
-      --       typeCheckingMode = "strict",
-      --     }
-      --   },
-      -- })
-      lspconfig.basedpyright.setup({
+      lspconfig.pyright.setup({
         flags = {
           debounce_text_changes = 1000,
           allow_incremental_sync = false,
         },
-        cmd = { "basedpyright-langserver", "--createstub", "--stdio" },
         settings = {
           python = {
             analysis = {
               openFilesOnly = true,
               diagnosticMode = "openFilesOnly",
-              useLibraryCodeForTypes = false,
-              autoSearchPath = true,
+              useLibraryCodeForTypes = true,
+              autoSearchPathh = true,
               stubPath = vim.fn.stdpath("data") .. "/lazy/python-type-stubs",
               typeCheckingMode = "basic",
             }
           },
-          basedpyright = {
+          pyright = {
             stubPath = vim.fn.stdpath("data") .. "/lazy/python-type-stubs",
-            typeCheckingMode = "basic",
+            typeCheckingMode = "strict",
           }
         },
       })
+      -- lspconfig.basedpyright.setup({
+      --   flags = {
+      --     debounce_text_changes = 1000,
+      --     allow_incremental_sync = false,
+      --   },
+      --   cmd = { "basedpyright-langserver", "--createstub", "--stdio" },
+      --   settings = {
+      --     python = {
+      --       analysis = {
+      --         openFilesOnly = true,
+      --         diagnosticMode = "openFilesOnly",
+      --         useLibraryCodeForTypes = false,
+      --         autoSearchPath = true,
+      --         stubPath = vim.fn.stdpath("data") .. "/lazy/python-type-stubs",
+      --         typeCheckingMode = "basic",
+      --       }
+      --     },
+      --     basedpyright = {
+      --       stubPath = vim.fn.stdpath("data") .. "/lazy/python-type-stubs",
+      --       typeCheckingMode = "basic",
+      --     }
+      --   },
+      -- })
       lspconfig.ts_ls.setup({})
       lspconfig.eslint.setup({})
       lspconfig.gopls.setup({

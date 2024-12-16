@@ -22,10 +22,17 @@ return {
                 enable = true
             },
 
+            context_commentstring = {
+                enable = true,
+                enable_autocmd = false,
+            },
+
             highlight = {
                 -- `false` will disable the whole extension
-                enable = true,
                 disable = { "gitcommit", "dockerfile", "yaml", "json" },
+                enable = true,
+                indent = { enable = false },
+                endwise = { enable = true },
 
                 -- Setting this to true will run `:h syntax` and tree-sitter at the same time.
                 -- Set this to `true` if you depend on "syntax" being enabled (like for indentation).
@@ -55,3 +62,27 @@ return {
         vim.treesitter.language.register("templ", "templ")
     end,
 }
+
+-- config = function()
+--     local configs = require("nvim-treesitter.configs")
+--
+--     configs.setup({
+--         ensure_installed = {
+--             "cmake",
+--             "cpp",
+--             "c_sharp",
+--             "c",
+--             "lua",
+--             "rust",
+--             "python",
+--             "go",
+--         },
+--         context_commentstring = {
+--             enable = true,
+--             enable_autocmd = false,
+--         },
+--         highlight = { enable = true, use_languagetree = true },
+--         indent = { enable = false },
+--         endwise = { enable = true },
+--     })
+-- en
