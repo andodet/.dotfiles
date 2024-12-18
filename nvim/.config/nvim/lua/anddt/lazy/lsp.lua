@@ -2,7 +2,6 @@ return {
   {
     "neovim/nvim-lspconfig",
     dependencies = {
-      { "VonHeikemen/lsp-zero.nvim", branch = "v4.x" },
       "williamboman/mason.nvim",
       "williamboman/mason-lspconfig.nvim",
       "hrsh7th/cmp-nvim-lsp",
@@ -16,12 +15,10 @@ return {
       "creativenull/efmls-configs-nvim",
       "ray-x/lsp_signature.nvim",
       "microsoft/python-type-stubs",
-      "hrsh7th/cmp-cmdline"
     },
     opts = { format = { timeout_ms = 300 } },
     config = function()
-      local lsp = require("lsp-zero")
-      lsp.extend_lspconfig()
+      local lspconfig = require("lspconfig")
       local cmp = require("cmp")
       local cmp_lsp = require("cmp_nvim_lsp")
       local capabilities = vim.tbl_deep_extend(
@@ -39,32 +36,19 @@ return {
           "ts_ls",
           "eslint",
           "ruff",
-          -- "basedpyright",
           "pyright",
           "gopls",
           "efm"
         },
         handlers = {
-          function(server_name) -- default handler (optional)
-            -- They renamed stuff upstream so typescript breaks
-            -- if server_name == "ts_ls" then
-            --   server_name = "tsserver"
-            -- end
-            require("lspconfig")[server_name].setup({
+          function(server_name)
+            lspconfig[server_name].setup({
               capabilities = capabilities,
             })
           end,
         },
       })
 
-
-      -- Add borders to documentation hover
-      -- vim.lsp.handlers['textDocument/hover'] = vim.lsp.with(
-      --   vim.lsp.handlers.hover,
-      --   { border = 'single' }
-      -- )
-      --
-      -- For some reason ruff has started acting up (shows "No information available on hover")
       vim.lsp.handlers['textDocument/hover'] = function(_, result, ctx, config)
         config = config or { border = 'single' }
         config.focus_id = ctx.method
@@ -90,13 +74,12 @@ return {
           end,
         })
       end
-      -- key bindings
-      lsp.on_attach(function(client, bufnr)
+
+      local on_attach = function(client, bufnr)
         local opts = { buffer = bufnr, remap = false }
         lsp_format_on_save(bufnr)
-        -- lsp.buffer_autoformat()
         require "lsp_signature".on_attach({
-          bind = true, -- This is mandatory, otherwise border config won't get registered.
+          bind = true,
           hint_enable = false,
           floating_window = false,
           handler_opts = {
@@ -122,14 +105,13 @@ return {
         vim.keymap.set("n", "<leader>vrr", function() vim.lsp.buf.references() end, opts)
         vim.keymap.set("n", "<F2>", function() vim.lsp.buf.rename() end, opts)
         vim.keymap.set("i", "<C-h>", function() vim.lsp.buf.signature_help() end, opts)
-        -- vim.keymap.set("i", "<A-C-Space>", function() require("lsp_signature").toggle_float_win() end, opts)
         vim.keymap.set("n", "gt", function() vim.lsp.buf.type_definition() end, opts)
         vim.keymap.set("n", "<leader>fi", function() vim.lsp.buf.format() end, opts)
-      end)
+      end
 
-      local lspconfig = require("lspconfig")
       lspconfig.lua_ls.setup({
         capabilities = capabilities,
+        on_attach = on_attach,
         settings = {
           Lua = {
             diagnostics = {
@@ -146,47 +128,13 @@ return {
         },
       })
 
-      -- lspconfig.pylsp.setup({
-      --   enable = true,
-      --   on_attach = function(client, bufnr)
-      --     -- client.server_capabilities.documentFormattingProvider = false
-      --     -- client.server_capabilities.hoverProvider = false
-      --     -- client.server_capabilities.renameProvider = false
-      --   end,
-      --   settings = {
-      --     pylsp = {
-      --       plugins = {
-      --         jedi_completion = { enabled = true },
-      --         pycodestyle = { enabled = false },
-      --         pyflakes = { enabled = false },
-      --         mccabe = { enabled = false },
-      --         pylsp_mypy = { enable = false },
-      --         pyls_mypy = { enabled = false },
-      --         flake8 = { enabled = false },
-      --         pylsp_black = { enabled = false },
-      --         pylsp_isort = { enabled = false },
-      --         ruff = { enabled = false },
-      --       },
-      --     },
-      --   },
-      -- })
-      --
-      -- vim.diagnostic.config({
-      --   virtual_text = true,
-      --   signs = true,
-      --   update_in_insert = false,
-      --   underline = true,
-      --   severity_sort = false,
-      --   float = true,
-      -- })
-
-      lspconfig.omnisharp.setup({})
+      lspconfig.omnisharp.setup({ on_attach = on_attach })
       lspconfig.ruff.setup({
-        -- this is done to maintain parity with black formatter
         cmd = { "ruff", "server" },
         settings = {
           organizeImports = true
-        }
+        },
+        on_attach = on_attach,
       })
       lspconfig.pyright.setup({
         flags = {
@@ -199,83 +147,44 @@ return {
               openFilesOnly = true,
               diagnosticMode = "openFilesOnly",
               useLibraryCodeForTypes = true,
-              autoSearchPathh = true,
+              autoSearchPath = true,
               stubPath = vim.fn.stdpath("data") .. "/lazy/python-type-stubs",
               typeCheckingMode = "strict",
-              -- autoIMportCompletions = true,
             }
           },
           pyright = {
             stubPath = vim.fn.stdpath("data") .. "/lazy/python-type-stubs",
           }
         },
+        on_attach = on_attach,
       })
-      -- lspconfig.basedpyright.setup({
-      --   flags = {
-      --     debounce_text_changes = 1000,
-      --     allow_incremental_sync = false,
-      --   },
-      --   cmd = { "basedpyright-langserver", "--createstub", "--stdio" },
-      --   settings = {
-      --     python = {
-      --       analysis = {
-      --         openFilesOnly = true,
-      --         diagnosticMode = "openFilesOnly",
-      --         useLibraryCodeForTypes = false,
-      --         autoSearchPath = true,
-      --         stubPath = vim.fn.stdpath("data") .. "/lazy/python-type-stubs",
-      --         typeCheckingMode = "basic",
-      --       }
-      --     },
-      --     basedpyright = {
-      --       stubPath = vim.fn.stdpath("data") .. "/lazy/python-type-stubs",
-      --       typeCheckingMode = "basic",
-      --     }
-      --   },
-      -- })
-      lspconfig.ts_ls.setup({})
-      lspconfig.eslint.setup({})
+      lspconfig.ts_ls.setup({ on_attach = on_attach })
+      lspconfig.eslint.setup({ on_attach = on_attach })
       lspconfig.gopls.setup({
-        -- on_attach = function(client, bufnr)
-        --   -- goimports = gofmt + goimports
-        --   local format_sync_grp = vim.api.nvim_create_augroup("GoFormat", {})
-        --   vim.api.nvim_create_autocmd("BufWritePre", {
-        --     pattern = "*.go",
-        --     callback = function()
-        --       require('go.format').goimports()
-        --     end,
-        --     group = format_sync_grp,
-        --   })
-        -- end,
         settings = {
           gopls = {
             analyses = {
               unusedparams = true
             },
             staticcheck = true,
-            -- gofumpt = true
           }
-        }
+        },
+        on_attach = on_attach,
       })
 
-      local golines = require("efmls-configs.formatters.golines")
-      local black = require("efmls-configs.formatters.black")
-      local ruff_sort = require("efmls-configs.formatters.ruff_sort")
+      local goimports = require('efmls-configs.formatters.goimports')
       local isort = require("efmls-configs.formatters.isort")
       local prettier = {
-        formatCommand =
-        "prettier --stdin-filepath ${INPUT}",
+        formatCommand = "prettier --stdin-filepath ${INPUT}",
         formatStdin = true,
       }
       local shfmt = require("efmls-configs.formatters.shfmt")
-      local goimports = require('efmls-configs.formatters.goimports')
       lspconfig.efm.setup({
         filetypes = { "python", "javascript", "typescript", "html", "yaml", "markdown", "json" },
         init_options = { documentFormatting = true },
         settings = {
           languages = {
             typescript = { prettier },
-            -- javascript = { prettier },
             html = { prettier },
             yaml = { prettier },
             markdown = { prettier },
@@ -285,23 +194,13 @@ return {
             go = { goimports }
           },
         },
+        on_attach = on_attach,
       })
-      lsp.format_on_save({
-        format_opts = {
-          async = true,
-        },
-        servers = {
-          ["efm"] = { "javascript", "typescript", "html", "yaml", "markdown", "json", "python", "sh", "go" },
-        },
-      })
-
-      local cmp_select = { behavior = cmp.SelectBehavior.Select }
-
 
       cmp.setup({
         snippet = {
           expand = function(args)
-            require("luasnip").lsp_expand(args.body) -- For `luasnip` users.
+            require("luasnip").lsp_expand(args.body)
           end,
         },
         mapping = cmp.mapping.preset.insert({
@@ -309,19 +208,17 @@ return {
           ['<C-f>'] = cmp.mapping(cmp.mapping.scroll_docs(4), { "i", "c" }),
           ['<C-Space>'] = cmp.mapping.complete(),
           ['<C-e>'] = cmp.mapping.abort(),
-          ['<CR>'] = cmp.mapping.confirm({ select = true }), -- Accept currently selected item. Set `select` to `false` to only confirm explicitly selected items.
+          ['<CR>'] = cmp.mapping.confirm({ select = true }),
         }),
         sources = cmp.config.sources({
           { name = "nvim_lsp" },
-          { name = "luasnip" }, -- For luasnip users.
+          { name = "luasnip" },
         }, {
           { name = "buffer" },
         }),
-        window = {
-        },
         enabled = function()
           local in_prompt = vim.api.nvim_buf_get_option(0, 'buftype') == 'prompt'
-          if in_prompt then -- this will disable cmp in the Telescope window (taken from the default config)
+          if in_prompt then
             return false
           end
           local context = require("cmp.config.context")
@@ -331,27 +228,11 @@ return {
           vim.b.copilot_suggestion_hidden = false
         end)
       })
-      -- vim cmd line autocomplete
-      -- cmp.setup.cmdline(':', {
-      --   mapping = cmp.mapping.preset.cmdline(),
-      --   sources = cmp.config.sources({
-      --     { name = 'path' }
-      --   }, {
-      --     {
-      --       name = 'cmdline',
-      --       option = {
-      --         ignore_cmds = { 'Man', '!' }
-      --       }
-      --     }
-      --   })
-      -- })
 
       vim.diagnostic.config({
-        -- update_in_insert = true,
         float = {
           focusable = false,
           style = "minimal",
-          -- border = "single",
           source = "always",
           header = "",
           prefix = "",
@@ -359,11 +240,10 @@ return {
         virtual_text = true
       })
     end,
-    cond = vim.fn.exists("g:vscode") == 0,
   },
+
   {
     "onsails/lspkind.nvim",
-    cond = vim.fn.exists("g:vscode") == 0,
     config = function()
       require("lspkind").init({
         mode = "symbol",
