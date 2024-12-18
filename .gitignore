@@ -2,5 +2,5 @@ fonts/
 *__pycache__
 *.ruff_cache
 **/**/nvim/projects
-.config/nvim/lazy-lock.json
+**/**/lazy-lock.json
 zsh/.zshenv_pvt

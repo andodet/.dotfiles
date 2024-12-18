@@ -29,7 +29,7 @@ return {
 
             highlight = {
                 -- `false` will disable the whole extension
-                disable = { "gitcommit", "dockerfile", "yaml", "json" },
+                disable = { "gitcommit", "dockerfile", "json" },
                 enable = true,
                 indent = { enable = false },
                 endwise = { enable = true },

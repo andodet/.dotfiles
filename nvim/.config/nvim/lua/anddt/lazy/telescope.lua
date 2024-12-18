@@ -4,7 +4,7 @@ return {
         "nvim-lua/plenary.nvim",
         "gbrlsnchs/telescope-lsp-handlers.nvim",
         "davvid/telescope-git-grep.nvim",
-        -- "junegunn/fzf",
+        "junegunn/fzf",
         -- {
         --     'nvim-telescope/telescope-fzf-native.nvim',
         --     build = 'make',
@@ -42,13 +42,11 @@ return {
             extensions = {
                 lsp_handlers = {},
                 lsp_workspace_symbols = {},
-                -- fzf = {
-                --     fuzzy = true,                   -- false will only do exact matching
-                --     override_generic_sorter = true, -- override the generic sorter
-                --     override_file_sorter = true,    -- override the file sorter
-                --     case_mode = "smart_case",       -- or "ignore_case" or "respect_case"
-                --     -- the default case_mode is "smart_case"
-                -- }
+                fzf = {
+                    fuzzy = true,                   -- false will only do exact matching
+                    override_generic_sorter = true, -- override the generic sorter
+                    override_file_sorter = true,    -- override the file sorter
+                }
             }
         })
         telescope.load_extension("git_grep")
@@ -60,8 +58,8 @@ return {
         vim.keymap.set('n', '<leader><leader>s', function()
             builtin.grep_string({ search = vim.fn.input("Grep > ") })
         end)
-        vim.keymap.set('n', '<leader>pwg', function()
-            require("git_grep").grep({ search = vim.fn.input("Grep > ") })
+        vim.keymap.set('n', '<leader><leader>S', function()
+            require("git_grep").grep({ search = vim.fn.input("Grep > "), opts = { "--ignore-case" } })
         end)
     end,
     cond = vim.fn.exists('g:vscode') == 0

@@ -322,3 +322,5 @@ exec_always swayidle -w \
 #         timeout 1802 'systemctl suspend' \
 #         resume 'swaymsg "output * dpms on"' \
 #         before-sleep 'swaylock -f -c 000000'
+# set primary gruvbox colorscheme colors
+# see https://github.com/morhetz/gruvbox-contrib/blob/master/color.table

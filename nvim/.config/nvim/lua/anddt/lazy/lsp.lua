@@ -185,6 +185,7 @@ return {
         -- this is done to maintain parity with black formatter
         cmd = { "ruff", "server" },
         settings = {
+          organizeImports = true
         }
       })
       lspconfig.pyright.setup({
@@ -200,12 +201,12 @@ return {
               useLibraryCodeForTypes = true,
               autoSearchPathh = true,
               stubPath = vim.fn.stdpath("data") .. "/lazy/python-type-stubs",
-              typeCheckingMode = "basic",
+              typeCheckingMode = "strict",
+              -- autoIMportCompletions = true,
             }
           },
           pyright = {
             stubPath = vim.fn.stdpath("data") .. "/lazy/python-type-stubs",
-            typeCheckingMode = "strict",
           }
         },
       })
