@@ -9,6 +9,7 @@ return {
       { "nvim-lua/plenary.nvim" },  -- for curl, log wrapper
     },
     opts = {
+      model = "claude-3.5-sonnet",
       prompts = {
         Review = {
           prompt = '/COPILOT_REVIEW Review the selected code.',

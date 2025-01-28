@@ -7,13 +7,23 @@ return {
       "hrsh7th/cmp-nvim-lsp",
       "hrsh7th/cmp-buffer",
       "hrsh7th/cmp-path",
-      "hrsh7th/cmp-cmdline",
       "hrsh7th/nvim-cmp",
       "L3MON4D3/LuaSnip",
       "saadparwaiz1/cmp_luasnip",
       "j-hui/fidget.nvim",
       "creativenull/efmls-configs-nvim",
-      "ray-x/lsp_signature.nvim",
+      {
+        "ray-x/lsp_signature.nvim",
+        opts = {
+          bind = true,
+          hint_enable = true,
+          floating_window = false,
+          handler_opts = {
+            -- border = "single",
+          },
+          hint_prefix = ""
+        },
+      },
       "microsoft/python-type-stubs",
     },
     opts = { format = { timeout_ms = 300 } },
@@ -34,7 +44,7 @@ return {
         ensure_installed = {
           "lua_ls",
           "ts_ls",
-          "eslint",
+          "eslint@4.8.0",
           "ruff",
           "pyright",
           "gopls",
@@ -50,7 +60,8 @@ return {
       })
 
       vim.lsp.handlers['textDocument/hover'] = function(_, result, ctx, config)
-        config = config or { border = 'single' }
+        -- config = config or { border = 'single' }
+        config = config or {}
         config.focus_id = ctx.method
         if not (result and result.contents) then
           return
@@ -76,16 +87,10 @@ return {
       end
 
       local on_attach = function(client, bufnr)
+        client.server_capabilities.document_formatting = true
         local opts = { buffer = bufnr, remap = false }
         lsp_format_on_save(bufnr)
-        require "lsp_signature".on_attach({
-          bind = true,
-          hint_enable = false,
-          floating_window = false,
-          handler_opts = {
-            border = "single",
-          }
-        }, bufnr)
+        require "lsp_signature".setup()
         vim.keymap.set("n", "gds", function()
           vim.cmd([[split]])
           vim.lsp.buf.definition()
@@ -107,6 +112,8 @@ return {
         vim.keymap.set("i", "<C-h>", function() vim.lsp.buf.signature_help() end, opts)
         vim.keymap.set("n", "gt", function() vim.lsp.buf.type_definition() end, opts)
         vim.keymap.set("n", "<leader>fi", function() vim.lsp.buf.format() end, opts)
+        vim.keymap.set("i", "<C-k>", cmp.mapping.scroll_docs(-4), opts)
+        vim.keymap.set("i", "<C-j>", cmp.mapping.scroll_docs(4), opts)
       end
 
       lspconfig.lua_ls.setup({
@@ -132,13 +139,16 @@ return {
       lspconfig.ruff.setup({
         cmd = { "ruff", "server" },
         settings = {
-          organizeImports = true
+          organizeImports = true,
+          lint = {
+            args = { "--fix" }
+          }
         },
         on_attach = on_attach,
       })
       lspconfig.pyright.setup({
         flags = {
-          debounce_text_changes = 1000,
+          -- debounce_text_changes = 1000,
           allow_incremental_sync = false,
         },
         settings = {
@@ -154,44 +164,85 @@ return {
           },
           pyright = {
             stubPath = vim.fn.stdpath("data") .. "/lazy/python-type-stubs",
+            disableOrganizeImports = true
           }
         },
         on_attach = on_attach,
       })
       lspconfig.ts_ls.setup({ on_attach = on_attach })
-      lspconfig.eslint.setup({ on_attach = on_attach })
+      -- lspconfig.ts_ls.setup({})
+      require("lspconfig").eslint.setup({ on_attach = on_attach })
       lspconfig.gopls.setup({
         settings = {
           gopls = {
-            analyses = {
-              unusedparams = true
-            },
             staticcheck = true,
-          }
+            semanticTokens = false,
+            analyses = {
+              unusedparams = true,
+              unusedvariable = true,
+            },
+          },
         },
-        on_attach = on_attach,
+        on_attach = on_attach
       })
-
       local goimports = require('efmls-configs.formatters.goimports')
       local isort = require("efmls-configs.formatters.isort")
-      local prettier = {
-        formatCommand = "prettier --stdin-filepath ${INPUT}",
-        formatStdin = true,
-      }
+      local prettier = require("efmls-configs.formatters.prettier")
       local shfmt = require("efmls-configs.formatters.shfmt")
+      local eslint = require("efmls-configs.linters.eslint")
+      -- local prettier = {
+      --   formatCommand = "prettier --stdin-filepath ${INPUT}",
+      --   formatStdin = true,
+      -- }
+      -- staticcheck = {
+      --   prefix = "staticcheck",
+      --   lintSource = "efm/staticcheck",
+      --   lintCommand = "staticcheck -tests=false -f text ${INPUT}",
+      --   lintStdin = false,
+      --   lintFormats = { '%.%#:%l:%c: %m' },
+      --   rootMarkers = { "go.mod", ".git" },
+      -- }
+      govet = {
+        prefix = "govet",
+        lintSource = "efm/govet",
+        lintCommand = "go vet ${INPUT}",
+        lintStdin = false,
+        lintFormats = { '%.%#:%l:%c: %m' },
+        rootMarkers = { "go.mod", ".git" },
+      }
       lspconfig.efm.setup({
-        filetypes = { "python", "javascript", "typescript", "html", "yaml", "markdown", "json" },
+        filetypes = {
+          "go",
+          "python",
+          "html",
+          "yaml",
+          "markdown",
+          "css",
+          "json",
+          "javascript",
+          "javascriptreact",
+          "javascript.jsx",
+          "typescript",
+          "typescript.tsx",
+          "typescriptreact"
+        },
         init_options = { documentFormatting = true },
         settings = {
           languages = {
-            typescript = { prettier },
-            html = { prettier },
+            javascript = { prettier, eslint },
+            javascriptreact = { prettier, eslint },
+            ["javascript.jsx"] = { prettier, eslint },
+            typescript = { prettier, eslint },
+            ["typescript.tsx"] = { prettier, eslint },
+            typescriptreact = { prettier, eslint },
+            css = { prettier, eslint },
+            html = { prettier, eslint },
             yaml = { prettier },
             markdown = { prettier },
             json = { prettier },
             python = { isort },
             sh = { shfmt },
-            go = { goimports }
+            go = { goimports },
           },
         },
         on_attach = on_attach,

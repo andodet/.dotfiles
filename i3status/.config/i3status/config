@@ -58,6 +58,7 @@ nvidia_smi {
 }
 
 volume_status {
+	cache_timeout = 5
 	blocks = "🔈🔉🔊"
 	format = "{icon}: {percentage}"
 	format_muted = "🔇"

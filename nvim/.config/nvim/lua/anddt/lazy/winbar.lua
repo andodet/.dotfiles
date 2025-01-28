@@ -1,9 +1,19 @@
-return {
-  {
-    "fgheng/winbar.nvim",
-    cond = vim.fn.exists('g:vscode') == 0,
-    config = function()
-      require("winbar").setup({})
-    end
-  }
-}
+return {}
+-- return {
+--   {
+--     "fgheng/winbar.nvim",
+--     config = function()
+--       require("winbar").setup({
+--         show_file_path = true,
+--         show_symbols = true,
+--
+--         colors = {
+--           path = "#383838",
+--           file_name = "#383838",
+--           symbols = "#383838"
+--         }
+--
+--       })
+--     end
+--   }
+-- }

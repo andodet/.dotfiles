@@ -96,6 +96,7 @@ return {
         -- Makes a best effort to setup the various debuggers with
         -- reasonable debug configurations
         automatic_installation = true,
+        ensure_installed = { "go" },
 
         -- You can provide additional configuration to the handlers,
         -- see mason-nvim-dap README for more information
@@ -121,6 +122,12 @@ return {
       },
       config = function()
         require("dap-python").setup("/home/anddt/.pyenv/versions/3.12.4/bin/python")
+      end
+    },
+    {
+      "leoluz/nvim-dap-go",
+      config = function()
+        require("dap-go").setup({})
       end
     }
   },

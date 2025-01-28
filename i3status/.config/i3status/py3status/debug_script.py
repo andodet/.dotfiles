@@ -8,6 +8,7 @@ if __name__ == "__main__":
         "name": "example",
         "instance": "first",
     }
-    but = Py3status()
+    button = Py3status(debug=True)
 
-    Py3status.on_click(click_data)
+    button.on_click(event=click_data)
+    button.on_click(event=click_data)

@@ -13,14 +13,16 @@ return {
 
       -- Adds a number of user-friendly snippets
       'rafamadriz/friendly-snippets',
+      "hrsh7th/cmp-cmdline",
     },
     config = function()
       local lspkind = require("lspkind")
-      require("cmp").setup({
+      local cmp = require("cmp")
+      cmp.setup({
         formatting = {
           format = lspkind.cmp_format({
             mode = 'symbol',
-            maxwidth = 50,
+            -- maxwidth = 50,
             ellipsis_char = '...',    -- when popup menu exceed maxwidth, the truncated part would show ellipsis_char instead (must define maxwidth first)
             show_labelDetails = true, -- show labelDetails in menu. Disabled by default
             before = function(entry, vim_item)
@@ -38,6 +40,5 @@ return {
         },
       })
     end,
-    cond = vim.fn.exists('g:vscode') == 0,
   }
 }

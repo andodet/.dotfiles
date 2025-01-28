@@ -25,7 +25,13 @@ return {
         ['CONFIRM'] = 'Y?',
         ['MORE'] = 'M',
       }
+
+      function get_window()
+        return vim.api.nvim_win_get_number(0)
+      end
+
       require("lualine").setup({
+
         options = {
           icons_enabled = true,
           -- theme = 'kanagawa',
@@ -40,6 +46,9 @@ return {
           lualine_y = { 'progress' },
           lualine_z = { 'location' }
         },
+        inactive_sections = {
+          lualine_a = { { get_window, color = { bg = "#383838", fg = "none" } } }
+        }
       })
     end,
     lazy = false

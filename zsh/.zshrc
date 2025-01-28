@@ -94,6 +94,7 @@ plugins=(
     git
     zsh-autosuggestions
     zsh-kitty
+    web-search
 )
 
 source $ZSH/oh-my-zsh.sh
@@ -147,7 +148,7 @@ alias ngrok="/opt/ngrok"
 alias rstudio="rstudio &>/dev/null &"
 alias pe="pyenv"
 alias dc="docker compose"
-alias todo="nvim ~/Documents/sm-notes/TODO.md"
+alias todo="vim ~/todo.md"
 alias dcai="dc run ai"  
 alias nau="nautilus"
 alias nv="nvim"

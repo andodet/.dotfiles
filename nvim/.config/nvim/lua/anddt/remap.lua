@@ -11,6 +11,7 @@ vim.g.mapleader = " "
 
 vim.keymap.set('n', "<leader>w", ":w<CR>", { desc = "Write file" })
 vim.keymap.set('n', "<leader>q", ":q<CR>", { desc = "Close file" })
+vim.keymap.set('n', "<leader>Q", ":qa<CR>", { desc = "Close file" })
 vim.keymap.set({ "n", "v" }, "<leader>y", [["+y]])
 vim.keymap.set("n", "<leader>Y", [["+Y]])
 
@@ -38,6 +39,12 @@ vim.keymap.set('n', '<C-l>', [[<cmd> lua require('smart-splits').move_cursor_rig
 vim.keymap.set("n", "<leader>gR", [[<cmd>Glance references<CR>]])
 vim.keymap.set("n", "<leader>gD", [[<cmd>Glance definitions<CR>]])
 vim.keymap.set("n", "<leader>gT", [[<cmd>Glance type_definitions<CR>]])
+-- go to specific window
+for i = 1, 6 do
+  local lhs = "<leader>" .. i
+  local rhs = i .. "<C-W>w"
+  vim.keymap.set("n", lhs, rhs, { desc = "Move to window " .. i })
+end
 
 -- tabs
 vim.keymap.set("n", "<leader>tn", [[<cmd>$tabnew<CR>]], { desc = "Opena a new tab" })
@@ -45,17 +52,6 @@ vim.keymap.set("n", "<leader>tq", [[<cmd>tabclose<CR>]], { desc = "Close current
 vim.keymap.set("n", "<leader>tr", [[<cmd>TabRename]], { desc = "Rename the current tab" })
 -- vim.keymap.set("n", "<leader>bM", "<C-W>\\| <C-W>_", { desc = "maximize a window" })
 -- vim.keymap.set("n", "<leader>bm", "<C-W>=", { desc = "minimize a window" })
-
--- telescope
-vim.keymap.set("n", "<leader><leader>f", [[<cmd>Telescope find_files<CR>]], { desc = "Telescope search files" })
-vim.keymap.set("n", "<C-p>", [[<cmd>Telescope git_files<CR>]], { desc = "Telescope search files" })
-vim.keymap.set("n", "<leader>fs", [[<cmd>Telescope lsp_document_symbols<CR>]], { desc = "Telescope LSP doc symbols" })
-vim.keymap.set("n", "<leader>fS", [[<cmd>Telescope lsp_dynamic_workspace_symbols<CR>]],
-  { desc = "Telescope workspace symbols" })
-vim.keymap.set("n", "<leader>fg", [[<cmd>Telescope current_buffer_fuzzy_find<CR>]],
-  { desc = "Telescope fuzzy current buffer" })
-vim.keymap.set("n", "<leader>fG", [[<cmd>Telescope live_grep<CR>]], { desc = "Telescope grep" })
-vim.keymap.set("n", "<leader>f.", [[<cmd>Telescope buffers<CR><C-q>]], { desc = "Telescope buffers" })
 
 -- file explorer
 vim.keymap.set("n", "<leader>fe", [[<cmd>Neotree toggle reveal_force_cwd<CR>]], { desc = "Toggle neotree" })
@@ -69,7 +65,8 @@ vim.keymap.set("n", "<leader>ep", [[<cmd>lua vim.diagnostic.goto_prev()<CR>]], {
 
 -- git
 vim.keymap.set("n", "<leader>ga", [[<cmd>Git add %:p<CR><CR>]], { desc = "git add all" })
-vim.keymap.set("n", "<leader>G", [[<cmd>Git<CR>]], { desc = "git add all" })
+vim.keymap.set("n", "<leader>Gg", [[<cmd>Git<CR>]], { desc = "Open vim-fugitive" })
+vim.keymap.set("n", "<leader>Gt", [[<cmd>tab Git<CR>]], { desc = "Open vim-fugitive in new tab" })
 vim.keymap.set("n", "<leader>gci", [[<cmd>Git commit -v -q<CR>]], { desc = "git commit" })
 vim.keymap.set("n", "<leader>gca", [[<cmd>Git commit -v -q --amend<CR>]], { desc = "git commit amend" })
 vim.keymap.set("n", "<leader>gb", ":Git branch", { desc = "Git branch" })

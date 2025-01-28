@@ -4,5 +4,5 @@ else
 	vim.opt.shiftwidth = 4
 	vim.opt.softtabstop = 4
 	vim.opt.expandtab = false
-	vim.opt.colorcolumn = "140"
+	vim.opt.colorcolumn = "120"
 end
