@@ -1,9 +1,12 @@
 import os
-from typing import Any
 import subprocess
+from typing import Any
 
 
 def get_gamma_cmds(session_type: str, gamma: int = 4000) -> tuple[list[str], list[str]]:
+    """
+    Find the right command to apply gamma to the monitor
+    """
     if session_type == "x11":
         cmd_on = ["redshift", "-O", str(gamma)]
         cmd_off = ["redshift", "-x"]
@@ -47,6 +50,9 @@ class Py3status:
         return "🌙" if is_on else "☀️"
 
     def redshift_toggle(self) -> dict[str, Any]:
+        """
+        Toggles the redshift command to apply gamma to the monitor
+        """
         lightbulb = self._check_redshift_is_active()
         return {
             "full_text": lightbulb,
@@ -54,6 +60,9 @@ class Py3status:
         }
 
     def on_click(self, event) -> dict[str, Any]:
+        """
+        Handle on-click event
+        """
         if not self.night_light_is_on:
             self._print_class_attributes()
             # output = self.py3.command_output(self.cmd_on, shell=False)

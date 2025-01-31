@@ -12,8 +12,8 @@ set $mod Mod4
 exec --no-startup-id dunst
 # This font is widely installed, provides lots of unicode glyphs, right-to-left
 # text rendering and scalability on retina/hidpi displays (thanks to pango).
-font pango:DejaVu Sans Mono 10.5
-titlebar_padding 3
+font pango:Input, DejaVu Sans Mono 12
+titlebar_padding 2
 bindsym $mod+d exec python3 $HOME/.config/sway/window_switcher.py
 # bindsym $mod+d exec --no-startup-id rofi -show window -run-command "i3-msg exec '{cmd}'" -show-icons
 # set $menu --no-startup-id rofi -show drun -run-shell-command "{terminal} -e zsh -ic '{cmd} && read'"
@@ -32,8 +32,8 @@ bindsym Ctrl+F10 exec --no-startup-id clipman pick --tool=CUSTOM --tool-args="fu
 # xss-lock grabs a logind suspend inhibit lock and will use i3lock to lock the
 # screen before suspend. Use loginctl lock-session to lock your screen.
 #exec --no-startup-id xss-lock --transfer-sleep-lock -- i3lock --nofork
-output DP-2 resolution 3840x2160 position 0 1800 scale 1 adaptive_sync on
-output DP-1 resolution 2560x1440 position 3840 1800 scale 1 adaptive_sync on
+output DP-2 resolution 3840x2160 position 0 1800 scale 1 adaptive_sync on bg #008080 solid_color
+output DP-1 resolution 2560x1440 position 3840 1800 scale 1 adaptive_sync on bg #008080 solid_color
 output DP-1 transform 270
 
 #and nm-applet is a desktop environment-independent system tray GUI for it.

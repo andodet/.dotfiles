@@ -96,7 +96,6 @@ return {
         -- Makes a best effort to setup the various debuggers with
         -- reasonable debug configurations
         automatic_installation = true,
-        ensure_installed = { "go" },
 
         -- You can provide additional configuration to the handlers,
         -- see mason-nvim-dap README for more information
@@ -115,7 +114,6 @@ return {
     },
     {
       'mfussenegger/nvim-dap-python',
-      cond = vim.fn.exists('g:vscode') == 0,
       dependencies = {
         'mfussenegger/nvim-dap',
         'rcarriga/nvim-dap-ui',
@@ -126,6 +124,10 @@ return {
     },
     {
       "leoluz/nvim-dap-go",
+      dependencies = {
+        'mfussenegger/nvim-dap',
+        'rcarriga/nvim-dap-ui',
+      },
       config = function()
         require("dap-go").setup({})
       end

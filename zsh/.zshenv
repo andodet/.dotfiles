@@ -28,4 +28,8 @@ source ~/.zshenv_pvt
 # Fix GKE auth lag
 export USE_GKE_GCLOUD_AUTH_PLUGIN=True
 
+# Fix gsutil compatibility problems with python 3.12
+export CLOUDSDK_PYTHON=$HOME/.pyenv/versions/3.10.16/bin/python3.10
+export CLOUDSDK_PYTHON_SITEPACKAGES=1
+
 #. "$HOME/.cargo/env"

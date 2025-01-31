@@ -6,7 +6,7 @@ box: common
 
 laptop: common
 	stow sway_laptop
-	stow i3status
+	stow i3status_laptop
 
 common:
 	stow dunst

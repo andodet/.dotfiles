@@ -60,8 +60,8 @@ vim.keymap.set("n", "<leader>fe", [[<cmd>Neotree toggle reveal_force_cwd<CR>]], 
 vim.keymap.set("n", "<leader>pv", [[<cmd> lua require("swenv.api").pick_venv()<CR>]], { desc = "Select python venv" })
 
 -- code
-vim.keymap.set("n", "<leader>en", [[<cmd>lua vim.diagnostic.goto_next()<CR>]], { desc = "Go to next problem" })
-vim.keymap.set("n", "<leader>ep", [[<cmd>lua vim.diagnostic.goto_prev()<CR>]], { desc = "Go to previous problem" })
+-- vim.keymap.set("n", "<leader>en", [[<cmd>lua vim.diagnostic.goto_next()<CR>]], { desc = "Go to next problem" })
+-- vim.keymap.set("n", "<leader>ep", [[<cmd>lua vim.diagnostic.goto_prev()<CR>]], { desc = "Go to previous problem" })
 
 -- git
 vim.keymap.set("n", "<leader>ga", [[<cmd>Git add %:p<CR><CR>]], { desc = "git add all" })
@@ -80,8 +80,8 @@ vim.keymap.set("n", "<leader>g<leader>", ":Git<Space>", { desc = "Show git log" 
 -- Gitsigns
 vim.keymap.set("n", "<leader>hp", ":Gitsigns preview_hunk_inline<CR>", { desc = "Preview hunk inline" })
 vim.keymap.set("n", "<leader>hr", ":Gitsigns reset_hunk<CR>", { desc = "Gitsigns reset hunk" })
-vim.keymap.set("n", "<leader>hn", ":Gitsigns next_hunk<CR>", { desc = "Gitsings next hunk" })
-vim.keymap.set("n", "<leader>hP", ":Gitsigns prev_hunk<CR>", { desc = "Reset git hunk" })
+vim.keymap.set("n", "]h", ":Gitsigns next_hunk<CR>", { desc = "Gitsings next hunk" })
+vim.keymap.set("n", "[h", ":Gitsigns prev_hunk<CR>", { desc = "Reset git hunk" })
 vim.keymap.set("n", "<leader>hs", ":Gitsigns stage_hunk<CR>", { desc = "Gitsings stage hunk" })
 vim.keymap.set("n", "<leader>hu", ":Gitsigns undo_stage_hunk<CR>", { desc = "Gitsigns unstage hunk" })
 

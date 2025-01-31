@@ -40,7 +40,7 @@ return {
         },
         sections = {
           lualine_a = { { 'mode', fmt = function(s) return mode_map[s] or s end } },
-          lualine_b = { { 'filename', path = 0 } },
+          lualine_b = { { 'filename', path = 4 } },
           lualine_c = { 'branch', 'diff' },
           lualine_x = { "diagnostics", 'encoding', 'fileformat', 'filetype', "copilot" },
           lualine_y = { 'progress' },
