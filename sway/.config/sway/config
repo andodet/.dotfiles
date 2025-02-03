@@ -12,7 +12,7 @@ set $mod Mod4
 exec --no-startup-id dunst
 # This font is widely installed, provides lots of unicode glyphs, right-to-left
 # text rendering and scalability on retina/hidpi displays (thanks to pango).
-font pango:Input, DejaVu Sans Mono 12
+font pango:Hack Nerd Font Mono, DejaVu Sans Mono 12
 titlebar_padding 2
 bindsym $mod+d exec python3 $HOME/.config/sway/window_switcher.py
 # bindsym $mod+d exec --no-startup-id rofi -show window -run-command "i3-msg exec '{cmd}'" -show-icons

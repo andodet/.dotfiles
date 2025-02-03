@@ -1,6 +1,9 @@
 return {
   {
     'DNLHC/glance.nvim',
-    cond = vim.fn.exists('g:vscode') == 0
+    cmd = "Glance",
+    config = function()
+      vim.api.nvim_set_hl(0, "GlancePreviewNormal", { bg = "#333637" })
+    end
   }
 }

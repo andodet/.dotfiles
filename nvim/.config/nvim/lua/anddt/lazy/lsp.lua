@@ -188,7 +188,11 @@ return {
       local goimports = require('efmls-configs.formatters.goimports')
       local isort = require("efmls-configs.formatters.isort")
       local prettier = require("efmls-configs.formatters.prettier")
-      local shfmt = require("efmls-configs.formatters.shfmt")
+      local staticcheck = require("efmls-configs.linters.staticcheck")
+      local shfmt = {
+        formatCommand = "shfmt -i 4 --filename '${INPUT}' -",
+        formatStdin = true,
+      }
       local eslint = require("efmls-configs.linters.eslint")
       -- local prettier = {
       --   formatCommand = "prettier --stdin-filepath ${INPUT}",
@@ -242,7 +246,7 @@ return {
             json = { prettier },
             python = { isort },
             sh = { shfmt },
-            go = { goimports },
+            go = { goimports, staticheck },
           },
         },
         on_attach = on_attach,

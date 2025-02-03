@@ -5,6 +5,5 @@ return {
     config = function()
       require('ufo').setup()
     end,
-    cond = vim.fn.exists('g:vscode') == 0
   }
 }

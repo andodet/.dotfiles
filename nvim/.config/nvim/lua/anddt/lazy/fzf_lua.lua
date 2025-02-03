@@ -6,9 +6,11 @@ return {
   -- or if using mini.icons/mini.nvim
   -- dependencies = { "echasnovski/mini.icons" },
   opts = {},
+  lazy = false,
   config = function()
     -- keymaps
-    require("fzf-lua").setup {
+    local fzf = require("fzf-lua")
+    fzf.setup {
       -- "max-perf",
       keymap = {
         fzf = {
@@ -16,7 +18,7 @@ return {
         },
       },
       grep = {
-        rg_opts = "--column --line-number --no-heading --color=always --smart-case"
+        rg_opts = "--column --line-number --no-heading --smart-case"
       },
       winopts = {
         set_title = false,
@@ -26,7 +28,9 @@ return {
           delay = 50
         }
       },
-      -- exclude node_modules and such from results
+      fzf_colors = {
+        ["bg+"] = { "bg", "Visual" }
+      },
       files = {
         file_ignore_patterns = {
           "node_modules/",
@@ -39,7 +43,6 @@ return {
       },
       set_term_title = false
     }
-    local fzf = require("fzf-lua")
 
 
     -- search git files
