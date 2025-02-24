@@ -11,7 +11,7 @@ vim.g.mapleader = " "
 
 vim.keymap.set('n', "<leader>w", ":w<CR>", { desc = "Write file" })
 vim.keymap.set('n', "<leader>q", ":q<CR>", { desc = "Close file" })
-vim.keymap.set('n', "<leader>Q", ":qa<CR>", { desc = "Close file" })
+vim.keymap.set('n', "<leader>Q", ":qa!<CR>", { desc = "Close file" })
 vim.keymap.set({ "n", "v" }, "<leader>y", [["+y]])
 vim.keymap.set("n", "<leader>Y", [["+Y]])
 
@@ -54,7 +54,7 @@ vim.keymap.set("n", "<leader>tr", [[<cmd>TabRename]], { desc = "Rename the curre
 -- vim.keymap.set("n", "<leader>bm", "<C-W>=", { desc = "minimize a window" })
 
 -- file explorer
-vim.keymap.set("n", "<leader>fe", [[<cmd>Neotree toggle reveal_force_cwd<CR>]], { desc = "Toggle neotree" })
+vim.keymap.set("n", "<leader>ft", [[<cmd>Neotree toggle reveal_force_cwd<CR>]], { desc = "Toggle neotree" })
 
 -- python virtual environments
 vim.keymap.set("n", "<leader>pv", [[<cmd> lua require("swenv.api").pick_venv()<CR>]], { desc = "Select python venv" })
@@ -64,18 +64,13 @@ vim.keymap.set("n", "<leader>pv", [[<cmd> lua require("swenv.api").pick_venv()<C
 -- vim.keymap.set("n", "<leader>ep", [[<cmd>lua vim.diagnostic.goto_prev()<CR>]], { desc = "Go to previous problem" })
 
 -- git
-vim.keymap.set("n", "<leader>ga", [[<cmd>Git add %:p<CR><CR>]], { desc = "git add all" })
-vim.keymap.set("n", "<leader>Gg", [[<cmd>Git<CR>]], { desc = "Open vim-fugitive" })
-vim.keymap.set("n", "<leader>Gt", [[<cmd>tab Git<CR>]], { desc = "Open vim-fugitive in new tab" })
-vim.keymap.set("n", "<leader>gci", [[<cmd>Git commit -v -q<CR>]], { desc = "git commit" })
-vim.keymap.set("n", "<leader>gca", [[<cmd>Git commit -v -q --amend<CR>]], { desc = "git commit amend" })
-vim.keymap.set("n", "<leader>gb", ":Git branch", { desc = "Git branch" })
-vim.keymap.set("n", "<leader>gco", ":Git checkout<Space>", { desc = "git add all" })
-vim.keymap.set("n", "<leader>gps", ":Git push<space>", { desc = "git push" })
-vim.keymap.set("n", "<leader>gpl", ":Git pull<Space>", { desc = "git pull" })
-vim.keymap.set("n", "<leader>gd", "[[<cmd>Gdiff<CR>]]", { desc = "Diff file" })
-vim.keymap.set("n", "<leader>gl", ":Gclog<CR>", { desc = "Show git log" })
-vim.keymap.set("n", "<leader>g<leader>", ":Git<Space>", { desc = "Show git log" })
+vim.keymap.set("n", "<leader>gg", [[<cmd>Neogit<CR>]], { desc = "Neogit branch" })
+vim.keymap.set("n", "<leader>gc", [[<cmd>Neogit commit<CR>]], { desc = "Neogit commit" })
+vim.keymap.set("n", "<leader>gb", [[<cmd>Neogit branch<CR>]], { desc = "Neogit branch" })
+vim.keymap.set("n", "<leader>gps", "[[<cmd>Neogit push<CR>]]", { desc = "Neogit push" })
+vim.keymap.set("n", "<leader>gpl", [[<cmd>Neogit pull<CR>]], { desc = "Neogit pull" })
+vim.keymap.set("n", "<leader>gd", "[[<cmd>Neogit diff<CR>]]", { desc = "Neogit diff" })
+vim.keymap.set("n", "<leader>gl", "[[<cmd>Neogit log<CR>]]", { desc = "Neogit log" })
 
 -- Gitsigns
 vim.keymap.set("n", "<leader>hp", ":Gitsigns preview_hunk_inline<CR>", { desc = "Preview hunk inline" })
@@ -114,6 +109,9 @@ vim.keymap.set("n", "<leader>top", [[<cmd>Neotest output-panel<CR>]], { desc = "
 vim.keymap.set("n", "<leader>too", [[<cmd>Neotest output<CR>]], { desc = "Show inline output" })
 vim.keymap.set("n", "<leader>tr", [[<cmd>Neotest run<CR>]], { desc = "Neotest run" })
 vim.keymap.set("n", "<leader>ts", [[<cmd>Neotest summary<CR>]], { desc = "Neotest summary" })
+
+vim.keymap.set("n", "<leader>fe", [[<cmd>!eslint %<CR>]], { desc = "Run eslint on current file" })
+
 
 -- tasks
 vim.keymap.set("n", "<leader>;;", [[<cmd>OverseerToggle<CR>]], { desc = "Toggle Overseer" })

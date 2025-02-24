@@ -7,8 +7,7 @@ return {
             -- A list of parser names, or "all"
             ensure_installed = {
                 "vimdoc", "javascript", "typescript", "c", "lua", "rust",
-                "bash", "python", "toml", "go", "ruby", "sql",
-                "dockerfile", "yaml", "json"
+                "bash", "python", "toml", "go", "ruby", "sql", "json"
             },
 
             -- Install parsers synchronously (only applied to `ensure_installed`)
@@ -16,7 +15,7 @@ return {
 
             -- Automatically install missing parsers when entering buffer
             -- Recommendation: set to false if you don"t have `tree-sitter` CLI installed locally
-            auto_install = true,
+            auto_install = false,
 
             indent = {
                 enable = true
@@ -29,7 +28,7 @@ return {
 
             highlight = {
                 -- `false` will disable the whole extension
-                disable = { "gitcommit", "dockerfile", "json" },
+                disable = { "gitcommit", "json" },
                 enable = true,
                 indent = { enable = false },
                 endwise = { enable = true },

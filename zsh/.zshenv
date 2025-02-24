@@ -1,3 +1,6 @@
+source ~/.zshenv_pvt
+source ~/.zsh_clean_docker
+
 export PYENV_VIRTUALENV_DISABLE_PROMPT=0
 
 export PYENV_ROOT="$HOME/.pyenv"
@@ -14,6 +17,7 @@ export PATH="$PATH:/home/anddt/.local/share/coursier/bin"
 export PATH="PATH=$HOME/.local/bin/godot:$PATH"
 
 export FZF_ALT_C_COMMAND='fd --type d --hidden --exclude .git --exclude node_modules'
+export FZF_CTRL_F_COMMAND='fd --type d --hidden --exclude .git --exclude node_modules'
 export FZF_DEFAULT_COMMAND='rg -l --exclude .git --exclude node_modules ""'
 export FZF_CTRL_T_COMMAND='rg --hidden -l ""'
 export ZSH_AUTOSUGGEST_HIGHLIGHT_STYLE='fg=#838383'
@@ -23,8 +27,6 @@ export ZSH_TMUX_AUTOCONNECT=false
 export VISUAL=vim
 export EDITOR=vim
 
-source ~/.zshenv_pvt
-
 # Fix GKE auth lag
 export USE_GKE_GCLOUD_AUTH_PLUGIN=True
 
@@ -32,4 +34,7 @@ export USE_GKE_GCLOUD_AUTH_PLUGIN=True
 export CLOUDSDK_PYTHON=$HOME/.pyenv/versions/3.10.16/bin/python3.10
 export CLOUDSDK_PYTHON_SITEPACKAGES=1
 
+export GVM_ROOT='/opt/gvm'
+
+export GOEXE="$HOME/sdk/go1.22.7/bin/go"
 #. "$HOME/.cargo/env"

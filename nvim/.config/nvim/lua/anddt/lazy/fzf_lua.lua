@@ -71,7 +71,7 @@ return {
       })
     end, { desc = "Search in current buffer" })
     -- fuzzy search all files
-    vim.keymap.set("n", "<leader>fG", function()
+    vim.keymap.set("n", "<leader>s", function()
       require("fzf-lua").grep({
         previewer = true,
         scrollbar = true,
@@ -86,10 +86,5 @@ return {
       -- local word = vim.fn.input("WsSym >")
       require("fzf-lua").lsp_live_workspace_symbols({})
     end, { desc = "[LSP] Search workspace symbols" })
-    -- grep exact word from git files
-    vim.keymap.set("n", "<leader>s", function()
-      local word = vim.fn.input("Grep >")
-      require("fzf-lua").grep({ search = word })
-    end, { desc = "Git grep word" })
   end,
 }

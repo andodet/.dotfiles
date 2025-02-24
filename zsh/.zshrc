@@ -145,7 +145,6 @@ eval "$(direnv hook zsh)"
 export PATH=$PATH:~/.local/bin
 
 alias ngrok="/opt/ngrok"
-alias rstudio="rstudio &>/dev/null &"
 alias pe="pyenv"
 alias dc="docker compose"
 alias todo="nv ~/todo.md"
@@ -156,16 +155,13 @@ alias v="vim"
 alias V="sudo vim"
 alias icat="kitty +kitten icat"
 alias vs-line-reset="python ~/reset_vscode_ln.py"
-alias reds="redshift -O 3500"
-alias redsr="redshift -x"
-alias gtklight="gsettings set org.gnome.desktop.interface color-scheme 'prefer-light'"
-alias gtkdark="gsettings set org.gnome.desktop.interface color-scheme 'prefer-dark'"
 alias dkr="docker"
 alias ktdark="source ~/.config/kitty/toggle_theme.sh"
 alias tm="tmux"
 alias kssh="kitten ssh"
 alias imv="imv-x11"
 alias jb="jupyter lab"
+alias dkrpr="docker system prune -f"
 
 # Open a new tmux session in a target directory
 function tmux_sessionizer() {
@@ -173,6 +169,18 @@ function tmux_sessionizer() {
 }
 zle -N tmux_sessionizer{,}
 bindkey ^f tmux_sessionizer
+
+fuzzy_ls() {
+    chosen="$(fd '.' -t d | fzf -0 --prompt 'fuzzy ls: ')"
+    if [[ -n "$chosen" ]]; then
+        LBUFFER+="$chosen"
+    else
+        LBUFFER+=""
+    fi
+}
+
+zle -N fuzzy_ls
+bindkey ^f fuzzy_ls
 
 # Restore delete up beginning of line
 bindkey \^U backward-kill-line

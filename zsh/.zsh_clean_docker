@@ -1,0 +1,20 @@
+dkrdel() {
+  if [[ -z "$1" ]]; then
+    echo "Usage: delete_docker_images <keyword>"
+    return 1
+  fi
+
+  local keyword="$1"
+  local images_to_delete
+
+  # Find images matching the keyword
+  images_to_delete=($(docker images --format "{{.Repository}}:{{.Tag}} {{.ID}}" | grep "$keyword" | awk '{print $2}'))
+
+  if [[ ${#images_to_delete[@]} -eq 0 ]]; then
+    echo "No matching images found."
+    return 0
+  fi
+
+  echo "Deleting images: ${images_to_delete[@]}"
+  docker rmi -f "${images_to_delete[@]}"
+}

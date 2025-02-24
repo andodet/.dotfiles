@@ -44,7 +44,7 @@ return {
         ensure_installed = {
           "lua_ls",
           "ts_ls",
-          "eslint@4.8.0",
+          "eslint",
           "ruff",
           "pyright",
           "gopls",
@@ -124,6 +124,10 @@ return {
             diagnostics = {
               globals = { "vim", "it", "describe", "before_each", "after_each" },
             },
+            workspace = {
+              userThirdParty = { os.getenv("HOME") .. ".local/share/lua/5.4" },
+              checkThirdParty = "Apply"
+            },
             format = {
               enable = true,
               defaultConfig = {
@@ -170,8 +174,7 @@ return {
         on_attach = on_attach,
       })
       lspconfig.ts_ls.setup({ on_attach = on_attach })
-      -- lspconfig.ts_ls.setup({})
-      require("lspconfig").eslint.setup({ on_attach = on_attach })
+      lspconfig.eslint.setup({ on_attach = on_attach })
       lspconfig.gopls.setup({
         settings = {
           gopls = {
@@ -180,6 +183,9 @@ return {
             analyses = {
               unusedparams = true,
               unusedvariable = true,
+              unusedfunc = true,
+              unreachable = true,
+              bools = true,
             },
           },
         },
@@ -188,65 +194,47 @@ return {
       local goimports = require('efmls-configs.formatters.goimports')
       local isort = require("efmls-configs.formatters.isort")
       local prettier = require("efmls-configs.formatters.prettier")
-      local staticcheck = require("efmls-configs.linters.staticcheck")
       local shfmt = {
-        formatCommand = "shfmt -i 4 --filename '${INPUT}' -",
+        formatCommand = "shfmt -i 2 --filename '${INPUT}' -",
         formatStdin = true,
       }
-      local eslint = require("efmls-configs.linters.eslint")
       -- local prettier = {
       --   formatCommand = "prettier --stdin-filepath ${INPUT}",
       --   formatStdin = true,
       -- }
-      -- staticcheck = {
-      --   prefix = "staticcheck",
-      --   lintSource = "efm/staticcheck",
-      --   lintCommand = "staticcheck -tests=false -f text ${INPUT}",
-      --   lintStdin = false,
-      --   lintFormats = { '%.%#:%l:%c: %m' },
-      --   rootMarkers = { "go.mod", ".git" },
-      -- }
-      govet = {
-        prefix = "govet",
-        lintSource = "efm/govet",
-        lintCommand = "go vet ${INPUT}",
-        lintStdin = false,
-        lintFormats = { '%.%#:%l:%c: %m' },
-        rootMarkers = { "go.mod", ".git" },
-      }
       lspconfig.efm.setup({
         filetypes = {
-          "go",
-          "python",
-          "html",
-          "yaml",
-          "markdown",
           "css",
-          "json",
+          "go",
+          "html",
           "javascript",
-          "javascriptreact",
           "javascript.jsx",
+          "javascriptreact",
+          "json",
+          "markdown",
+          "python",
           "typescript",
           "typescript.tsx",
-          "typescriptreact"
+          "typescriptreact",
+          "yaml",
         },
         init_options = { documentFormatting = true },
         settings = {
           languages = {
-            javascript = { prettier, eslint },
-            javascriptreact = { prettier, eslint },
-            ["javascript.jsx"] = { prettier, eslint },
-            typescript = { prettier, eslint },
-            ["typescript.tsx"] = { prettier, eslint },
-            typescriptreact = { prettier, eslint },
-            css = { prettier, eslint },
-            html = { prettier, eslint },
+            javascript = { prettier },
+            javascriptreact = { prettier },
+            ["javascript.jsx"] = { prettier },
+            typescript = { prettier },
+            ["typescript.tsx"] = { prettier },
+            typescriptreact = { prettier },
+            css = { prettier },
+            html = { prettier },
             yaml = { prettier },
             markdown = { prettier },
             json = { prettier },
             python = { isort },
             sh = { shfmt },
-            go = { goimports, staticheck },
+            go = { goimports },
           },
         },
         on_attach = on_attach,

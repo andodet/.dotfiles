@@ -7,6 +7,7 @@
     a = add 
     ap = add -p
     b = branch
+    bprune = "!git fetch --prune>/dev/null && git branch -vv | grep 'gone]' | awk '{print $1}' | xargs git branch -D"
     co = checkout
     ds = diff --staged
     df = diff
@@ -24,18 +25,22 @@
     ll = log --oneline -5 HEAD
     undo = reset HEAD
     dump = reset HEAD --hard
-    prum = pull --rebase upstream master
-    pum = pull upstream master
-    puom = pull origin master
-    puh = "!git pull origin $(git rev-parse --abbrev-ref HEAD)"
+
     m = checkout master
+    prum = "!git pull --rebase upstream $(git symbolic-ref refs/remotes/origin/HEAD | sed 's@^refs/remotes/origin/@@')"
+    pum = "!git pull upstream $(git symbolic-ref refs/remotes/origin/HEAD | sed 's@^refs/remotes/origin/@@')"
+    puom = "!git pull origin $(git symbolic-ref refs/remotes/origin/HEAD | sed 's@^refs/remotes/origin/@@')"
+    fuom = "!git fetch origin $(git symbolic-ref refs/remotes/origin/HEAD | sed 's@^refs/remotes/origin/@@')"
+    puh = "!git pull origin $(git rev-parse --abbrev-ref HEAD)"
+
     aliases = config --get-regexp alias
     del-orphan = "!git branch --format \"%(refname:short) %(upstream)\" | awk '{if (!$2) print $1;}' | xargs git b -D"
     recent = for-each-ref --count=10 --sort=-committerdate refs/heads/ --format='%(HEAD) %(color:yellow)%(refname:short)%(color:reset) - %(color:red)%(objectname:short)%(color:reset) - %(contents:subject) - %(authorname) (%(color:green)%(committerdate:relative)%(color:reset))'
+
     lg1 = log --oneline
     ctree = lg1-specific --all
-    lg2 = lg2-specific --all
-    lg3 = lg3-specific --all
+    lgg = lg2-specific --all
+    lggg = lg3-specific --all
 
     lg = log --graph --abbrev-commit --decorate --format=format:'%C(bold blue)%h%C(reset) - %C(bold green)(%ar)%C(reset) %C(white)%s%C(reset) %C(dim white)- %an%C(reset)%C(auto)%d%C(reset)'
     lg2-specific = log --graph --abbrev-commit --decorate --format=format:'%C(bold blue)%h%C(reset) - %C(cyan)%aD%C(reset) %C(green)(%ar)%C(reset)%C(auto)%d%C(reset)%n''          %C(white)%s%C(reset) %C(dim white)- %an%C(reset)'
