@@ -36,7 +36,7 @@ return {
           icons_enabled = true,
           -- theme = 'kanagawa',
           component_separators = '|',
-          section_separators = '',
+          -- section_separators = '>',
         },
         sections = {
           lualine_a = { { 'mode', fmt = function(s) return mode_map[s] or s end } },

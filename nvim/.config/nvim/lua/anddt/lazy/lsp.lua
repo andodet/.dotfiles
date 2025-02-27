@@ -195,7 +195,7 @@ return {
       local isort = require("efmls-configs.formatters.isort")
       local prettier = require("efmls-configs.formatters.prettier")
       local shfmt = {
-        formatCommand = "shfmt -i 2 --filename '${INPUT}' -",
+        formatCommand = "shfmt -i 4 --filename '${INPUT}' -",
         formatStdin = true,
       }
       -- local prettier = {

@@ -4,6 +4,9 @@ return {
     dependencies = { { 'nvim-tree/nvim-web-devicons' }, { 'RRethy/nvim-base16' } },
   },
   {
+    "AlexvZyl/nordic.nvim"
+  },
+  {
     "sainnhe/gruvbox-material",
     config = function()
       vim.g.gruvbox_material_enable_italic = false

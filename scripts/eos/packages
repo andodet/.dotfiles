@@ -8,7 +8,7 @@ docker-compose
 flatpak
 fuzzel
 fzf
-grimshot
+grim
 jq
 neovim
 oh-my-zsh-git
