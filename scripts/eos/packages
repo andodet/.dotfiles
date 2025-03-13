@@ -1,7 +1,9 @@
-btop
+bat
 blueman
+btop
 clipman
 curl
+diff-so-fancy
 direnv
 docker
 docker-compose
@@ -12,8 +14,8 @@ grim
 jq
 neovim
 oh-my-zsh-git
-pyenv
 py3status
+pyenv
 ripgrep
 swayidle
 swaylock

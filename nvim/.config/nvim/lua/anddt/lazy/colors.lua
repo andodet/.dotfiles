@@ -9,6 +9,7 @@ return {
       vim.g.gruvbox_material_enable_italic = false
       vim.g.gruvbox_material_disable_italic_comment = true
       vim.g.gruvbox_material_background = "hard"
+      vim.g.gruvbox_material_foreground = "mix"
       vim.g.gruvbox_material_diagnostic_virtual_text = "highlighted"
       vim.g.gruvbox_material_dim_inactive_windows = 0
       vim.cmd.colorscheme("gruvbox-material")

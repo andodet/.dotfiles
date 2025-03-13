@@ -34,6 +34,12 @@ vim.opt.foldlevelstart = 99
 vim.opt.foldnestmax = 4
 vim.opt.wrap = false
 
+-- default tabs behaviour
+vim.opt.tabstop = 2
+vim.opt.shiftwidth = 2
+vim.opt.softtabstop = 2
+vim.opt.expandtab = true
+
 vim.g.python3_host_prog = "/home/anddt/.pyenv/versions/3.12.4/bin/python"
 
 -- add some delay to lsp errors
