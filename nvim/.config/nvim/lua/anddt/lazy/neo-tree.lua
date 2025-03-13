@@ -28,6 +28,7 @@ local function copy_path(state)
       if i then
         local result = results[i]
         vim.fn.setreg('"', result)
+        vim.fn.setreg('+', result)
         vim.notify("Copied: " .. result)
       else
         vim.notify("Invalid selection")

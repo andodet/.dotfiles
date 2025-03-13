@@ -33,10 +33,13 @@ return {
       require("lualine").setup({
 
         options = {
-          icons_enabled = true,
-          -- theme = 'kanagawa',
-          component_separators = '|',
-          -- section_separators = '>',
+          -- icons_enabled = true,
+          -- theme = 'everforest',
+          theme = 'onedark',
+          component_separators = { left = '', right = '' },
+          section_separators = { left = '', right = '' },
+          -- component_separators = '|',
+          -- section_separators = nil,
         },
         sections = {
           lualine_a = { { 'mode', fmt = function(s) return mode_map[s] or s end } },
