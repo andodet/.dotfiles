@@ -191,7 +191,7 @@ bindsym $mod+r mode "resize"
 # finds out, if available)
 bar {
 	position bottom
-        status_command py3status --wm=sway --config=$HOME/.config/i3status/config -i $HOME/.config/i3status/py3status/ --debug --log-file /tmp/log_py3status.txt
+        status_command py3status --wm=sway --config=$HOME/.config/i3status/config -i $HOME/.config/i3status/py3status/
 }
 bindsym $mod+Shift+e exec swaynag -t warning -m 'You pressed the exit shortcut. Do you really want to exit sway? This will end your Wayland session.' -B 'Yes, exit sway' 'swaymsg exit'
 #for_window [all] title_window_icon yes
