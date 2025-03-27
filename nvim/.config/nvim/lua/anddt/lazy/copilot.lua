@@ -5,6 +5,7 @@ return {
     event = "InsertEnter",
     config = function()
       require("copilot").setup({
+        copilot_model = "claude-3.7-sonnet",
         suggestion = {
           enabled = true,
           auto_trigger = false,

@@ -5,14 +5,16 @@ exec /usr/lib/polkit-gnome/polkit-gnome-authentication-agent-1
 set $term kitty
 set $mod Mod4
 
+workspace_layout stacking
+
 # start with picom compositor as I'm having screen tearing problems withut one
 # Font for window titles. Will also be used by the bar unless a different font
 # is used in the bar {} block below.
-#font pango:FiraCode Nerd Font 10
 exec --no-startup-id dunst
 # This font is widely installed, provides lots of unicode glyphs, right-to-left
 # text rendering and scalability on retina/hidpi displays (thanks to pango).
-font pango:Hack Nerd Font Mono, DejaVu Sans Mono 12
+# font pango:DejaVu Sans Mono 13
+font pango:DejaVu Sans Mono 12
 titlebar_padding 2
 bindsym $mod+d exec python3 $HOME/.config/sway/window_switcher.py
 # bindsym $mod+d exec --no-startup-id rofi -show window -run-command "i3-msg exec '{cmd}'" -show-icons
@@ -38,7 +40,6 @@ output DP-1 transform 270
 
 #and nm-applet is a desktop environment-independent system tray GUI for it.
 exec --no-startup-id nm-applet --indicator
-exec --no-startup-id tuxedo-control-center
 
 # Use pactl to adjust volume in PulseAudio.
 set $refresh_i3status killall -SIGUSR1 i3status
@@ -247,24 +248,11 @@ bindsym $mod+shift+period exec swaynag -t warning -m "Log out user" \
         -Z "reboot" "swaymsg 'exec $HOME/.config/sway/i3exit reboot'" \
         -Z "shutdown" "swaymsg 'exec $HOME/.config/sway/i3exit shutdown'" \
         -Z "logout" "swaymsg exit"
-# bindsym $mod+Shift+period mode "$mode_system"
-# set $mode_system (l)ock, (e)xit, switch_(u)ser, (s)uspend, (h)ibernate, (r)eboot, (Shift+s)hutdown
-#
-# mode "$mode_system" {
-#
-#     bindsym l exec --no-startup-id /opt/i3exit lock, mode "default"
-#     bindsym s exec --no-startup-id /opt/i3exit suspend, mode "default"
-#     bindsym u exec --no-startup-id /opt/i3exit switch_user, mode "default"
-#     bindsym e exec --no-startup-id /opt/i3exit logout, mode "default"
-#     bindsym h exec --no-startup-id /opt/i3exit hibernate, mode "default"
-#     bindsym r exec --no-startup-id /opt/i3exit reboot, mode "default"
-#     bindsym Shift+s exec --no-startup-id /opt/i3exit shutdown, mode "default"
-#
-#     bindsym Return mode "default"
-#     bindsym Escape mode "default"
-# }
 
-for_window [class=".*"] border normal
+# for_window [class=".*"] border normal
+client.focused #4c7899 #285577 #ffffff #2e9ef4 #6f93ad
+bindsym $mod+o border toggle
+default_border normal 2
 
 bindsym XF86MonBrightnessDown exec sudo light -U 1
 bindsym XF86MonBrightnessUp exec sudo light -A 1
@@ -272,6 +260,11 @@ bindsym XF86MonBrightnessUp exec sudo light -A 1
 input type:pointer {
     accel_profile "flat"
     pointer_accel 0.8
+}
+
+# A bit more sensitivity on scroll
+input 2362:21036:PIXART_Wireless_Gaming_Mouse {
+    scroll_factor 2
 }
 
 ## Volume control
@@ -320,18 +313,9 @@ input type:keyboard {
 #
 ## Using pulseaudio-utils (append "-s $sinkname" without quotes to override default sink)
 exec dbus-update-activation-environment --systemd DISPLAY WAYLAND_DISPLAY SWAYSOCK
-# Turn off screen
 
+# Turn off screen and lock
 exec swayidle -w \
          timeout 360 'swaylock -f -c 000000' \
          timeout 600 'swaymsg "output * dpms off"' resume 'swaymsg "output * dpms on"' \
          before-sleep 'swaylock -f -c 000000'
-
-# exec swayidle -w \
-#         timeout 1800 'swaylock -f -c 000000' \
-#         timeout 1801 'swaymsg "output * dpms off"' \
-#         timeout 1802 'systemctl suspend' \
-#         resume 'swaymsg "output * dpms on"' \
-#         before-sleep 'swaylock -f -c 000000'
-# set primary gruvbox colorscheme colors
-# see https://github.com/morhetz/gruvbox-contrib/blob/master/color.table

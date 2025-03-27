@@ -141,7 +141,7 @@ return {
 
       lspconfig.omnisharp.setup({ on_attach = on_attach })
       lspconfig.ruff.setup({
-        cmd = { "ruff", "server" },
+        -- cmd = { "ruff", "server" },
         settings = {
           organizeImports = true,
           lint = {

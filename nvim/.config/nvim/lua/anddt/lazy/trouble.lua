@@ -6,7 +6,7 @@ return {
     keys = {
       {
         "<leader>el",
-        "<cmd>Trouble diagnostics toggle<cr>",
+        "<cmd>Trouble diagnostics toggle pinned=true<cr>",
         desc = "Diagnostics (Trouble)",
       },
     }

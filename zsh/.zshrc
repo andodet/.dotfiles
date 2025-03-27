@@ -192,7 +192,7 @@ source <(fzf --zsh)
 export FZF_DEFAULT_COMMAND='rg --files --hidden'
 source /usr/share/fzf/key-bindings.zsh
 
-# helper function to open files in nautilus
+# helper function to open files in file manager
 op() {
     nohup thunar $1 > /dev/null 2>&1 &
 }

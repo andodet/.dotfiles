@@ -15,10 +15,11 @@ return {
       vim.cmd.colorscheme("gruvbox-material")
       vim.api.nvim_set_hl(0, "PmenuSel", { bg = "#458588", fg = "#DDC7A1" })
       vim.api.nvim_set_hl(0, "NormalFLoat", { bg = "#3c3836", fg = "#ebdbb2" })
-      -- vim.api.nvim_set_hl(0, "MatchParen", { bg = "#4f4b4a" })
       vim.api.nvim_set_hl(0, "MatchParen", { bg = "#605d5c" })
-      vim.api.nvim_set_hl(0, "@string", { fg = "#b4a7d6" })
-      vim.api.nvim_set_hl(0, "String", { fg = "#b4a7d6" })
+      vim.api.nvim_set_hl(0, "@string", { fg = "#c9c9ff" })
+      vim.api.nvim_set_hl(0, "@string.special.url", { underline = false })
+      vim.api.nvim_set_hl(0, "String", { fg = "#c9c9ff" })
+      vim.api.nvim_set_hl(0, "@punctuation.delimiter", { link = "foreground" })
       vim.cmd("hi Visual guibg = #434343")
     end
   },

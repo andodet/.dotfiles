@@ -22,7 +22,7 @@ order += "toggle_redshift"
 order += "tztime local"
 
 diskdata {
-	disk="nvme0"
+	# disk="nvme-eui.ace42e00358e70ac2ee4ac0000000001"
 	format = "💾 {used_percent}%"
 }
 
@@ -31,7 +31,7 @@ loadavg {
 }
 
 spotify {
-	format = "💽 {artist} - {title}"
+	format = "🎵 {artist} - {title}"
 	format_down = ""
 	on_click 1 = "exec playerctl --player=spotify play-pause"
 	on_click 2 = '[class="Spotify"] focus'
